@@ -17,18 +17,39 @@ use App\Http\Controllers\ChamadoController;
 use App\Http\Controllers\TramiteController;
 use App\Http\Controllers\UsuarioController;
 
+// Home
 Route::get('/', [ChamadoController::class, 'index']);
-Route::get('/chamados', [ChamadoController::class, 'index']);
-Route::get('/chamados/create', [ChamadoController::class, 'create']);
-Route::get('/chamados/details', [ChamadoController::class, 'details']);
-//Route::get('/chamados/update', [ChamadoController::class, 'update']); pela regra de negócio, nao eh possivel editar um chamado.
-Route::get('/chamados/close', [ChamadoController::class, 'close']);
 
+// Chamados
+Route::get('/chamados/create', [ChamadoController::class, 'create']);
+
+Route::get('/chamados/{id}', function($id){
+    return view('chamados.chamado', ['id' => $id]);
+});
+
+Route::get('/chamados/close/{id}', function($id){
+    return view('chamados.close', ['id' => $id]);
+});
+
+// Tramites
 Route::get('/tramites/create', [TramiteController::class, 'create']);
 
+// Usuarios
 Route::get('/usuarios', [UsuarioController::class, 'index']);
 Route::get('/usuarios/create', [UsuarioController::class, 'create']);
-Route::get('/usuarios/details', [UsuarioController::class, 'details']);
-Route::get('/usuarios/update', [UsuarioController::class, 'update']);
-//Route::get('/chamados/delete', [ChamadoController::class, 'delete']); Nao posso excluir um usuário por causa da restricao de integridade do banco, pq o chamado tem um usuarop
-Route::get('/usuarios/inactivate', [UsuarioController::class, 'inactivate']);
+
+Route::get('/usuarios/{id}', function($id){
+    return view('usuarios.usuario', ['id' => $id]);
+});
+
+Route::get('/usuarios/close/{id}', function($id){
+    return view('usuarios.close', ['id' => $id]);
+});
+
+Route::get('/usuarios/update/{id}', function($id){
+    return view('usuarios.update', ['id' => $id]);
+});
+
+Route::get('/usuarios/inactivate/{id}', function($id){
+    return view('usuarios.inactivate', ['id' => $id]);
+});

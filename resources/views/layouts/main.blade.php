@@ -22,6 +22,21 @@
     <body>
         @yield('content')
 
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Chamados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/chamados/create" class="nav-link">Abrir chamado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/usuarios" class="nav-link">Usuários</a>
+                        </li>
+        </header>
+
         <footer>
             <p>Helpdesk do Lucas Stein &copy; 2023</p>
         </footer>

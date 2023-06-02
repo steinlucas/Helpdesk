@@ -14,10 +14,6 @@ class UsuarioController extends Controller
         return view('usuarios.create');
     }
 
-    public function details(){
-        return view('usuarios.details');
-    }
-
     public function update(){
         return view('usuarios.update');
     }

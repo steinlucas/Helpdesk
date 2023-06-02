@@ -10,7 +10,7 @@
     </br>
     <a href="/chamados/close">Encerrar chamado</a>
     </br>
-    <a href="/chamados/details">Detalhar chamado</a>
+    <a href="/chamados/5">Detalhar chamado</a>
 
     </br>
     </br>

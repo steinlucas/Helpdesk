@@ -14,14 +14,6 @@ class ChamadoController extends Controller
         return view('chamados.create');
     }
 
-    public function details(){
-        return view('chamados.details');
-    }
-
-    //public function update(){
-    //    return view('chamados.update');
-    //} nao pode editar chamado
-
     public function close(){
         return view('chamados.close');
     }
