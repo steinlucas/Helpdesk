@@ -21,7 +21,12 @@ use App\Http\Controllers\UserController;
 Route::get('/', [ChamadoController::class, 'index']);
 
 // Chamados
-Route::get('/chamados/create', [ChamadoController::class, 'create']);
+Route::post('/chamados', [ChamadoController::class, 'store']);
+
+
+Route::get('/chamados/create', function() {
+    return view('chamados.create');
+});
 
 Route::get('/chamados/{id}', function($id){
     return view('chamados.chamado', ['id' => $id]);

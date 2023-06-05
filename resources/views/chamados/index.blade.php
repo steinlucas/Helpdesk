@@ -10,7 +10,6 @@
     </br>
     <a href="/chamados/close">Encerrar chamado</a>
     </br>
-    <a href="/chamados/5">Detalhar chamado</a>
 
     <br>
     </br>
@@ -35,7 +34,7 @@
 
         @foreach($chamados as $chamado)
         <tr>
-            <th scope="row">{{ $chamado->numero_chamado }}</th>
+            <th scope="row">{{ $chamado->id }}</th>
             <td>{{ $chamado->titulo }}</td>
             <td>{{ $chamado->descricao }}</td>
             <td><a href="#"><i class="material-icons">lock</i></a></td>

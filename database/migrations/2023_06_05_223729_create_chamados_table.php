@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('chamados', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_chamado');
             $table->string('titulo');
             $table->text('descricao');
             $table->timestamps();

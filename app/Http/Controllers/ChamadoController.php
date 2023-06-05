@@ -13,8 +13,15 @@ class ChamadoController extends Controller
         return view('chamados.index', ['chamados' => $chamados]);
     }
 
-    public function create(){
-        return view('chamados.create');
+    public function store(Request $request){
+        $chamado = new Chamado;
+
+        $chamado->titulo = $request->titulo;
+        $chamado->descricao = $request->descricao;
+
+        $chamado->save();
+
+        return redirect('/');
     }
 
     public function close(){
