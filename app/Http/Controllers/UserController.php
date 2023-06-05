@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     public function index(){
         return view('usuarios.index');
@@ -19,7 +19,7 @@ class UsuarioController extends Controller
     }
 
     public function inactivate(){
-        // montar a regra pra inativar usuário, e no final jogar pra lista de usuários
+        // montar a regra pra inativar usuário, e no final jogar pra view lista de usuários.
         return view('usuarios.index');
     }
 }

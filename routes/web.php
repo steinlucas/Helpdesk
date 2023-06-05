@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ChamadoController;
 use App\Http\Controllers\TramiteController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 
 // Home
 Route::get('/', [ChamadoController::class, 'index']);
@@ -35,8 +35,8 @@ Route::get('/chamados/close/{id}', function($id){
 Route::get('/tramites/create', [TramiteController::class, 'create']);
 
 // Usuarios
-Route::get('/usuarios', [UsuarioController::class, 'index']);
-Route::get('/usuarios/create', [UsuarioController::class, 'create']);
+Route::get('/usuarios', [UserController::class, 'index']);
+Route::get('/usuarios/create', [UserController::class, 'create']);
 
 Route::get('/usuarios/{id}', function($id){
     return view('usuarios.usuario', ['id' => $id]);

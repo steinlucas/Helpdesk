@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         @yield('content')
@@ -35,6 +37,8 @@
                         <li class="nav-item">
                             <a href="/usuarios" class="nav-link">Usuários</a>
                         </li>
+                    <ul>
+                </div>
         </header>
 
         <footer>
