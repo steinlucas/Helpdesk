@@ -3,6 +3,7 @@
 @section('title', 'Helpdesk')
 
 @section('content')
+    <div id="chamados-index-container" class="col-md-6 offset-md-3">
 
     <h1>Chamados</h1>
 
@@ -14,7 +15,7 @@
     <br>
     </br>
 
-    <a href="/usuarios">Listar usuários</a>
+    <a href="/usuarios/index">Listar usuários</a>
     </br>
     <a href="/usuarios/create">Criar usuário</a>
 

@@ -3,15 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function index(){
-        return view('usuarios.index');
+        $usuarios = User::all();
+
+        return view('usuarios.index', ['usuarios' => $usuarios]);
     }
 
-    public function create(){
-        return view('usuarios.create');
+    public function store(Request $request){
+        $usuario = new User;
+
+        $usuario->nome = $request->nome;
+        $usuario->username = $request->username;
+        $usuario->password = $request->password;
+
+        $usuario->save();
+
+        return redirect('/usuarios');
     }
 
     public function update(){

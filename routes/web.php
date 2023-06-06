@@ -23,7 +23,6 @@ Route::get('/', [ChamadoController::class, 'index']);
 // Chamados
 Route::post('/chamados', [ChamadoController::class, 'store']);
 
-
 Route::get('/chamados/create', function() {
     return view('chamados.create');
 });
@@ -40,8 +39,13 @@ Route::get('/chamados/close/{id}', function($id){
 Route::get('/tramites/create', [TramiteController::class, 'create']);
 
 // Usuarios
-Route::get('/usuarios', [UserController::class, 'index']);
-Route::get('/usuarios/create', [UserController::class, 'create']);
+Route::post('/usuarios', [UserController::class, 'store']);
+
+Route::get('/usuarios/create', function() {
+    return view('usuarios.create');
+});
+
+Route::get('/usuarios/index', [UserController::class, 'index']);
 
 Route::get('/usuarios/{id}', function($id){
     return view('usuarios.usuario', ['id' => $id]);

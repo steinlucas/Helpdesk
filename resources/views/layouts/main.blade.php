@@ -22,8 +22,6 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        @yield('content')
-
         <header>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbar">
@@ -35,14 +33,18 @@
                             <a href="/chamados/create" class="nav-link">Abrir chamado</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/usuarios" class="nav-link">Usuários</a>
+                            <a href="/usuarios/index" class="nav-link">Usuários</a>
                         </li>
                     <ul>
                 </div>
         </header>
 
+        @yield('content')
+
         <footer>
             <p>Helpdesk do Lucas Stein &copy; 2023</p>
         </footer>
+
+</div>
     </body>
 </html>
