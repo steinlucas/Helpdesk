@@ -19,18 +19,34 @@ class UserController extends Controller
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
         $usuario->password = $request->password;
-
         $usuario->save();
 
-        return redirect('/usuarios');
+        return redirect('/usuarios/index');
+    }
+
+    public function getUsuario($id) {
+        $usuario = User::find($id);
+
+        return view('usuarios.usuario', ['usuario' => $usuario]);
     }
 
     public function update(){
         return view('usuarios.update');
     }
 
-    public function inactivate(){
-        // montar a regra pra inativar usuário, e no final jogar pra view lista de usuários.
-        return view('usuarios.index');
+    public function inactivate($id) {
+        $usuario = User::find($id);
+        $usuario->status = false;
+        $usuario->save();
+
+        return redirect('usuarios/index');
+    }
+
+    public function activate($id) {
+        $usuario = User::find($id);
+        $usuario->status = true;
+        $usuario->save();
+
+        return redirect('usuarios/index');
     }
 }

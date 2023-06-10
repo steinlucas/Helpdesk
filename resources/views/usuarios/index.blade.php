@@ -4,11 +4,13 @@
 
 @section('content')
 
-<div id="usuario-index-container" class="col-md-6 offset-md-3">
+<div id="usuario-index-container" class="container">
 
-    <h1>Listagem de Usuários</h1>
+    <h1>Usuários</h1>
     </br>
-    </br>
+
+    <a href="/usuarios/create" class="btn btn-primary">Criar um usuário</a>
+    </br></br>
 
     <table class="table">
         <thead>
@@ -23,10 +25,17 @@
 
         @foreach($usuarios as $usuario)
         <tr>
-            <th scope="row">{{ $usuario->nome }}</th>
-            <td>{{ $usuario->username }}</td>
-            <td>{{ $usuario->password }}</td>
-            <td><a href="#"><i class="material-icons">lock</i></a></td>
+            <td><a href="/usuarios/{{ $usuario->id }}" class="nav-link">{{ $usuario->nome }}</a></td>
+            <td><a href="/usuarios/{{ $usuario->id }}" class="nav-link">{{ $usuario->username }}</a></td>
+            <td><a href="/usuarios/{{ $usuario->id }}" class="nav-link">{{ $usuario->password }}</a></td>
+            <td>
+            @if ($usuario->status == true)
+                <a href="/usuarios/inactivate/{{$usuario->id}}"><i class="material-icons">lock</i></a>
+            @else
+                <a href="/usuarios/activate/{{$usuario->id}}"><i class="material-icons">lock_open</i></a>
+            @endif
+            <a href="/usuarios/{{ $usuario->id }}"><i class="material-icons">edit</i></a>
+            </td>
         </tr>
         @endforeach
 

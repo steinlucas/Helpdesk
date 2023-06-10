@@ -30,9 +30,6 @@
                             <a href="/" class="nav-link">Chamados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/chamados/create" class="nav-link">Abrir chamado</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="/usuarios/index" class="nav-link">Usuários</a>
                         </li>
                     <ul>

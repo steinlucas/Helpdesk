@@ -24,7 +24,26 @@ class ChamadoController extends Controller
         return redirect('/');
     }
 
-    public function close(){
-        return view('chamados.close');
+    public function close($id) {
+        $chamado = Chamado::find($id);
+        $chamado->status = false;
+        $chamado->save();
+
+        return redirect('/');
     }
+
+    public function reopen($id) {
+        $chamado = Chamado::find($id);
+        $chamado->status = true;
+        $chamado->save();
+
+        return redirect('/');
+    }
+
+    //public function delete($id){
+    //    $chamado = Chamado::find($id);
+    //    $chamado->delete();
+    //
+    //    return redirect('/');
+    //}
 }

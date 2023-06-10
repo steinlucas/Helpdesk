@@ -3,24 +3,14 @@
 @section('title', 'Helpdesk')
 
 @section('content')
-    <div id="chamados-index-container" class="col-md-6 offset-md-3">
+
+<div id="chamados-index-container" class="container">
 
     <h1>Chamados</h1>
-
-    <a href="/chamados/create">Abrir novo chamado</a>
     </br>
-    <a href="/chamados/close">Encerrar chamado</a>
-    </br>
-
-    <br>
-    </br>
-
-    <a href="/usuarios/index">Listar usuários</a>
-    </br>
-    <a href="/usuarios/create">Criar usuário</a>
-
-    </br>
-    </br>
+    
+    <a href="/chamados/create" class="btn btn-primary">Abrir um chamado</a>
+    </br></br>
 
     <table class="table">
         <thead>
@@ -35,10 +25,18 @@
 
         @foreach($chamados as $chamado)
         <tr>
-            <th scope="row">{{ $chamado->id }}</th>
-            <td>{{ $chamado->titulo }}</td>
-            <td>{{ $chamado->descricao }}</td>
-            <td><a href="#"><i class="material-icons">lock</i></a></td>
+            <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->id }}</td></a>
+            <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->titulo }}</a></td>
+            <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->descricao }}</a></td>
+            <td>
+            @if ($chamado->status == true)
+                <a href="/chamados/close/{{ $chamado->id }}"><i class="material-icons">lock</i></a>
+            @else
+                <a href="/chamados/reopen/{{ $chamado->id }}"><i class="material-icons">lock_open</i></a>
+            @endif
+            <a href="/tramites/create/{{ $chamado->id }}"><i class="material-icons">reply</i></a>
+            </td>
+
         </tr>
         @endforeach
 

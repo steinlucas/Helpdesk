@@ -31,12 +31,12 @@ Route::get('/chamados/{id}', function($id){
     return view('chamados.chamado', ['id' => $id]);
 });
 
-Route::get('/chamados/close/{id}', function($id){
-    return view('chamados.close', ['id' => $id]);
-});
+Route::get('/chamados/close/{id}', [ChamadoController::class, 'close']);
+
+Route::get('/chamados/reopen/{id}', [ChamadoController::class, 'reopen']);
 
 // Tramites
-Route::get('/tramites/create', [TramiteController::class, 'create']);
+Route::get('/tramites/create/{idchamado}', [TramiteController::class, 'create']);
 
 // Usuarios
 Route::post('/usuarios', [UserController::class, 'store']);
@@ -47,18 +47,16 @@ Route::get('/usuarios/create', function() {
 
 Route::get('/usuarios/index', [UserController::class, 'index']);
 
+Route::get('/usuarios/{id}', [UserController::class, 'getUsuario']);
+
 Route::get('/usuarios/{id}', function($id){
     return view('usuarios.usuario', ['id' => $id]);
-});
-
-Route::get('/usuarios/close/{id}', function($id){
-    return view('usuarios.close', ['id' => $id]);
 });
 
 Route::get('/usuarios/update/{id}', function($id){
     return view('usuarios.update', ['id' => $id]);
 });
 
-Route::get('/usuarios/inactivate/{id}', function($id){
-    return view('usuarios.inactivate', ['id' => $id]);
-});
+Route::get('/usuarios/inactivate/{id}', [UserController::class, 'inactivate']);
+
+Route::get('/usuarios/activate/{id}', [UserController::class, 'activate']);
