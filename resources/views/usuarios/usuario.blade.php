@@ -9,26 +9,21 @@
     <h1>Detalhes do usuário</h1>
 
     </br>
-    <form action="/usuarios" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input required type="text" class="form-control" id="nome" name="nome" value="{{ $usuario->nome }}">
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="username">Usuário</label>
-                <input required type="text" class="form-control" id="username" name="username" placeholder="Usuário">
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="password">Descrição</label>
-                <input required type="password" class="form-control" id="password" name="password" placeholder="Senha">
-            </div>
-            </br>
-            <input type="submit" class="btn btn-primary" value="Atualizar usuário">
-        </form>
-    </br>
+    @foreach($usuarios as $usuario)
+        <tr>
+            <td><a href="/usuarios/{{ $usuario->id }}" class="nav-link">{{ $usuario->nome }}</a></td>
+            <td><a href="/usuarios/{{ $usuario->id }}" class="nav-link">{{ $usuario->username }}</a></td>
+            <td><a href="/usuarios/{{ $usuario->id }}" class="nav-link">{{ $usuario->password }}</a></td>
+            <td>
+            @if ($usuario->status == true)
+                <a href="/usuarios/inactivate/{{$usuario->id}}"><i class="material-icons">lock</i></a>
+            @else
+                <a href="/usuarios/activate/{{$usuario->id}}"><i class="material-icons">lock_open</i></a>
+            @endif
+            <a href="//usuarios/update/{{$usuario->id}}"><i class="material-icons">edit</i></a>
+            </td>
+        </tr>
+        @endforeach
     
     <a href="/">Voltar à página inicial</a>
     

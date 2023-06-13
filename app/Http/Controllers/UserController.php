@@ -30,8 +30,21 @@ class UserController extends Controller
         return view('usuarios.usuario', ['usuario' => $usuario]);
     }
 
-    public function update(){
-        return view('usuarios.update');
+    public function update($id){
+        $usuarios = User::find($id);
+
+        foreach($usuarios as $usuario){
+            if ($usuario->$id == $id){
+                return view('usuarios.index');
+            } else {
+                //
+                //eturn view('usuarios/index', ['usuario' => $usuario]);
+            }
+        }
+
+        return view('usuarios.index', ['usuarios' => $usuarios]);
+
+        //return view('usuarios/$id');
     }
 
     public function inactivate($id) {

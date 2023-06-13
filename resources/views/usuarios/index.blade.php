@@ -34,7 +34,7 @@
             @else
                 <a href="/usuarios/activate/{{$usuario->id}}"><i class="material-icons">lock_open</i></a>
             @endif
-            <a href="/usuarios/{{ $usuario->id }}"><i class="material-icons">edit</i></a>
+            <a href="/usuarios/update/{{$usuario->id}}"><i class="material-icons">edit</i></a>
             </td>
         </tr>
         @endforeach

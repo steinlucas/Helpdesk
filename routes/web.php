@@ -47,15 +47,9 @@ Route::get('/usuarios/create', function() {
 
 Route::get('/usuarios/index', [UserController::class, 'index']);
 
-Route::get('/usuarios/{id}', [UserController::class, 'getUsuario']);
+Route::get('/usuarios/{id}', [UserController::class, 'index']);
 
-Route::get('/usuarios/{id}', function($id){
-    return view('usuarios.usuario', ['id' => $id]);
-});
-
-Route::get('/usuarios/update/{id}', function($id){
-    return view('usuarios.update', ['id' => $id]);
-});
+Route::get('/usuarios/update/{id}', [UserController::class, 'update']);
 
 Route::get('/usuarios/inactivate/{id}', [UserController::class, 'inactivate']);
 
