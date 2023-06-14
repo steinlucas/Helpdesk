@@ -9,7 +9,10 @@
     <h1>Detalhes do usuário</h1>
     </br>
     
-    <input readonly type="text" class="form-control" id="id" name="id" value="{{ $usuario->id }}">
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input readonly type="text" class="form-control" id="id" name="id" value="{{ $usuario->id }}">
+    </div>
     </br>
 
     <div class="form-check">
