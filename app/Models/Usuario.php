@@ -21,6 +21,7 @@ class Usuario extends Model
         'nome',
         'username',
         'password',
+        'status'
     ];
 
     /**

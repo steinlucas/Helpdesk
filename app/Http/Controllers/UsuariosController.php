@@ -67,7 +67,17 @@ class UsuariosController extends Controller
 
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
-        $usuario->password = $request->password;
+
+        if ($request->password != $usuario->password){
+            $usuario->password = $request->password;
+        }
+
+        if ($request->status == true){
+            $usuario->status = 1;
+        } else {
+            $usuario->status = 0;
+        }
+
         $usuario->save();
 
         return redirect()->to(route('usuario.index'));
