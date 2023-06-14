@@ -22,7 +22,7 @@
 
         <br>
         <input type="submit" class="btn btn-primary" value="Abrir chamado"></input>
-        <a href="/" class="btn btn-danger">Cancelar</a>
+        <a href="{{ route('chamado.index') }}" class="btn btn-danger">Cancelar</a>
     </form>
 
 @endsection

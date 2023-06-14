@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class UserType extends Model
 {
     use HasFactory;
+
+    public function usuarios()
+    {
+        return $this->hasMany(Usuario::class, 'tipoUsuario');
+    }
+
+    protected $fillable = [
+        'id',
+        'description'
+    ];
 }

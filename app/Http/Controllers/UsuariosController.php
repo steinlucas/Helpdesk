@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\UserType;
 
 class UsuariosController extends Controller
 {
@@ -13,6 +14,16 @@ class UsuariosController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
+        $tiposUsuario = UserType::all();
+
+        foreach ($usuarios as $usuario) {
+            foreach ($tiposUsuario as $tipoUsuario) {
+                if ($usuario->tipoUsuario == $tipoUsuario->id){
+                    $usuario->tipoUsuario = $tipoUsuario->description;
+                }
+            }
+        }
+
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -21,7 +32,9 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        return view('usuarios.create');
+        $tiposUsuarios = UserType::all();
+
+        return view('usuarios.create', compact('tiposUsuarios'));
     }
 
     /**
@@ -30,11 +43,13 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         $usuario = new Usuario;
+        $tipoUsuario = UserType::find($request->tipoUsuario);
 
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
         $usuario->password = $request->password;
         $usuario->status = true;
+        $usuario->tipoUsuario = $tipoUsuario->id;
         $usuario->save();
 
         return redirect()->to(route('usuario.index'));
@@ -46,6 +61,14 @@ class UsuariosController extends Controller
     public function show(string $id)
     {
         $usuario = Usuario::find($id);
+        $tiposUsuario = UserType::all();
+
+        foreach ($tiposUsuario as $tipoUsuario) {
+            if ($usuario->tipoUsuario == $tipoUsuario->id){
+                $usuario->tipoUsuario = $tipoUsuario->description;
+            }
+        }
+        
         return view('usuarios.show', compact('usuario'));
     }
 
@@ -55,7 +78,9 @@ class UsuariosController extends Controller
     public function edit(string $id)
     {
         $usuario = Usuario::find($id);
-        return view('usuarios.edit', compact('usuario'));
+        $tiposUsuario = UserType::all();
+
+        return view('usuarios.edit', compact(['usuario', 'tiposUsuario']));
     }
 
     /**
@@ -64,7 +89,8 @@ class UsuariosController extends Controller
     public function update(Request $request)
     {
         $usuario = Usuario::find($request->id);
-
+        $tipoUsuario = UserType::find($request->tipoUsuario);
+        
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
 
@@ -78,6 +104,7 @@ class UsuariosController extends Controller
             $usuario->status = 0;
         }
 
+        $usuario->tipoUsuario = $tipoUsuario->id;
         $usuario->save();
 
         return redirect()->to(route('usuario.index'));
@@ -88,6 +115,6 @@ class UsuariosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Nao pode excluir usuário.
     }
 }

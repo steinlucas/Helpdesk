@@ -40,6 +40,19 @@
         </div>
         </br>
 
+        <label>Tipo usuário</a>
+        <select name="tipoUsuario">
+            @foreach($tiposUsuario as $tipoUsuario)
+                <option 
+                @if ($usuario->tipoUsuario == $tipoUsuario->id)
+                    selected="selected"
+                @endif
+                value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->description }}</option>
+            @endforeach
+        </select>
+        </br>
+        </br>
+
         <input type="submit" class="btn btn-success" value="Atualizar usuário">
 
         <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>

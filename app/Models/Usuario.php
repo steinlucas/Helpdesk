@@ -21,7 +21,8 @@ class Usuario extends Model
         'nome',
         'username',
         'password',
-        'status'
+        'status',
+        'tipousuario'
     ];
 
     /**
@@ -41,4 +42,9 @@ class Usuario extends Model
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function userType()
+    {
+        $this->belongsTo(UserType::class, 'id');
+    }
 }

@@ -35,6 +35,12 @@
     </div>
     </br>
 
+    <div class="form-group">
+        <label for="id">Tipo usuário</label>
+        <input readonly type="text" class="form-control" id="tipoUsuario" name="tipoUsuario" value="{{ $usuario->tipoUsuario }}">
+    </div>
+    </br>
+
     <a href=" {{ route('usuario.index') }} " class="btn btn-primary">Voltar</a>
 
 @endsection

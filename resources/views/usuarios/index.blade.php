@@ -19,6 +19,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Usuário</th>
                 <th scope="col">Senha</th>
+                <th scope="col">Tipo usuário</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                 <td><a class="nav-link">{{ $usuario->nome }}</td>
                 <td><a class="nav-link">{{ $usuario->username }}</td>
                 <td><a class="nav-link">{{ $usuario->password }}</td>
+                <td><a class="nav-link">{{ $usuario->tipoUsuario }}</td>
                 <td>
                     <a href=" {{ route('usuario.show', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
                     <a href=" {{ route('usuario.edit', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
