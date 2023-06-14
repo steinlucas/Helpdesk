@@ -7,7 +7,7 @@
 <div id="usuario-reate-container" class="container">
     <h1>Criação de usuário</h1>
 
-    <form action="/usuarios" method="POST">
+    <form action="{{ route('usuario.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="nome">Nome</label>
@@ -20,14 +20,11 @@
         </div>
         </br>
         <div class="form-group">
-            <label for="password">Descrição</label>
+            <label for="password">Senha</label>
             <input required type="password" class="form-control" id="password" name="password" placeholder="Senha">
         </div>
         </br>
         <input type="submit" class="btn btn-primary" value="Criar usuário">
     </form>
-</br>
-
-<a href="/">Voltar à página inicial</a>
 
 @endsection

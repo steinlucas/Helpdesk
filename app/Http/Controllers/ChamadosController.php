@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Chamado;
 
-class ChamadoController extends Controller
+class ChamadosController extends Controller
 {
     public function index(){
         $chamados = Chamado::all();

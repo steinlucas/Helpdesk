@@ -5,6 +5,7 @@
 @section('content')
 
 <div id="chamado-create-container" class="col-md-6 offset-md-3">
+
     <h1>Abertura de chamado</h1>
 
     <form action="/chamados" method="POST">
@@ -23,8 +24,5 @@
         <input type="submit" class="btn btn-primary" value="Abrir chamado"></input>
         <a href="/" class="btn btn-danger">Cancelar</a>
     </form>
-</br>
-
-<a href="/">Voltar à página inicial</a>
 
 @endsection

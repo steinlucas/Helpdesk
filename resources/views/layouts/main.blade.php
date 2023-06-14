@@ -30,7 +30,7 @@
                             <a href="/" class="nav-link">Chamados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/usuarios/index" class="nav-link">Usuários</a>
+                            <a href=" {{ route('usuario.index') }} " class="nav-link">Usuários</a>
                         </li>
                     <ul>
                 </div>
@@ -39,6 +39,7 @@
         @yield('content')
 
         <footer>
+            </br>
             <p>Helpdesk do Lucas Stein &copy; 2023</p>
         </footer>
 

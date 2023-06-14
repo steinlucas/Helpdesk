@@ -22,24 +22,15 @@
             </tr>
         </thead>
         <tbody>
-
-        @foreach($chamados as $chamado)
-        <tr>
-            <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->id }}</td></a>
-            <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->titulo }}</a></td>
-            <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->descricao }}</a></td>
-            <td>
-            @if ($chamado->status == true)
-                <a href="/chamados/close/{{ $chamado->id }}"><i class="material-icons">lock</i></a>
-            @else
-                <a href="/chamados/reopen/{{ $chamado->id }}"><i class="material-icons">lock_open</i></a>
-            @endif
-            <a href="/tramites/create/{{ $chamado->id }}"><i class="material-icons">reply</i></a>
-            </td>
-
-        </tr>
-        @endforeach
-
+            @foreach($chamados as $chamado)
+            <tr>
+                <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->id }}</td></a>
+                <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->titulo }}</a></td>
+                <td><a href="/chamados/{{ $chamado->id }}" class="nav-link">{{ $chamado->descricao }}</a></td>
+                <td><a href="/tramites/edit/{{ $chamado->id }}"><i class="material-icons">reply</i></a></td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
+    
 @endsection
