@@ -65,31 +65,29 @@ class ChamadosController extends Controller
     }
 
     public function show($id) {
-        $chamados = Chamado::find($id);
+        $chamados = Chamado::where('id', $id)->get();
         
         foreach($chamados as $chamado) {
-            $teste = $chamado->usuarioAbriu;
-
-            $usuariosAbriram = Usuario::where('id', $chamado->teste)->get();
-            $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->get();
-
-            foreach($usuariosAbriram as $usuario) {
-                if ($chamado->usuarioAbriu == $usuario->id) {
-                    $chamado->usuarioAbriu = $usuario->nome;
-
-                    foreach($usuariosAtendentes as $usuarioAtendente){
-                        if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
-                            $chamado->atendenteResponsavel = $usuarioAtendente->nome;
+                $usuariosAbriram = Usuario::find($chamado->usuarioAbriu)->first()->get();
+                $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->first()->get();
+    
+                foreach($usuariosAbriram as $usuario) {
+                    if ($chamado->usuarioAbriu == $usuario->id) {
+                        $chamado->usuarioAbriu = $usuario->nome;
+    
+                        foreach($usuariosAtendentes as $usuarioAtendente){
+                            if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
+                                $chamado->atendenteResponsavel = $usuarioAtendente->nome;
+                            }
+                        }
+    
+                        if ($chamado->status == true) {
+                            $chamado->status = "Aberto";
+                        } else {
+                            $chamado->status = "Fechado";
                         }
                     }
-
-                    if ($chamado->status == true) {
-                        $chamado->status = "Aberto";
-                    } else {
-                        $chamado->status = "Fechado";
-                    }
                 }
-            }
         }
 
         return view('chamados.show', compact('chamado'));

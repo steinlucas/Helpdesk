@@ -60,7 +60,7 @@ class UsuariosController extends Controller
      */
     public function show(string $id)
     {
-        $usuarios = Usuario::find($id);
+        $usuarios = Usuario::where('id', $id)->get();
         $tiposUsuario = UserType::all();
 
         foreach ($usuarios as $usuario) {

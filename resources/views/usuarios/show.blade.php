@@ -13,13 +13,11 @@
     </div>
     </br>
 
-    <label>Status</a>
-        <select name="status">
-            <option value="0" @if ($usuario->status == 0) selected="selected" @endif>Desativado</option>
-            <option value="1" @if ($usuario->status == 1) selected="selected" @endif>Ativado</option>
-        </select>
-        </br>
-        </br>
+    <div class="col">
+        <label for="status">Status</label>
+        <input readonly type="text" class="form-control" id="status" name="status" value="{{ $usuario->status }}">
+    </div>
+    </br>
 
     <div class="form-group">
         <label for="nome">Nome</label>
