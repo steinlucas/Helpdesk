@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Chamado extends Model
+class Cliente extends Model
 {
     use HasFactory;
 
     public function usuario()
     {
-        $this->belongsTo(Usuario::class, 'id');
+        return $this->hasOne(Usuario::class, 'id');
     }
 }

@@ -68,7 +68,7 @@ class UsuariosController extends Controller
                 $usuario->tipoUsuario = $tipoUsuario->description;
             }
         }
-        
+
         return view('usuarios.show', compact('usuario'));
     }
 
@@ -90,7 +90,7 @@ class UsuariosController extends Controller
     {
         $usuario = Usuario::find($request->id);
         $tipoUsuario = UserType::find($request->tipoUsuario);
-        
+
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
 

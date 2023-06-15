@@ -22,7 +22,7 @@ class Usuario extends Model
         'username',
         'password',
         'status',
-        'tipousuario'
+        'tipoUsuario'
     ];
 
     /**
@@ -46,5 +46,15 @@ class Usuario extends Model
     public function userType()
     {
         $this->belongsTo(UserType::class, 'id');
+    }
+
+    public function chamados()
+    {
+        return $this->hasMany(Chamado::class, 'id');
+    }
+
+    public function cliente()
+    {
+        return $this->BelongsTo(Cliente::class, 'id');
     }
 }

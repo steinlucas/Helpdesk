@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('usuarios', function (Blueprint $table) {
-            $table->unsignedBigInteger('tipoUsuario')->default(2);
-            $table->foreign('tipoUsuario')->references('id')->on('user_types');
+        Schema::table('chamados', function (Blueprint $table) {
+            $table->unsignedBigInteger('cliente')->default(1);
+            $table->foreign('cliente')->references('id')->on('clientes');
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('chamados', function (Blueprint $table) {
+            //
+        });
     }
 };
