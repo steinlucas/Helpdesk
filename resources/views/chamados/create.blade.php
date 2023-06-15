@@ -14,7 +14,7 @@
             <div class="col-md-2">
                 <label>Cliente do chamado</a>
                 </br>
-                <select name="clienteChamado">
+                <select name="cliente">
                     @foreach($clientes as $cliente)
                         <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
                     @endforeach
@@ -24,7 +24,7 @@
             <div class="col-md-2">
                 <label>Atendente do chamado</a>
                 </br>
-                <select name="atendenteChamado">
+                <select name="atendente">
                     @foreach($atendentes as $atendente)
                         <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
                     @endforeach

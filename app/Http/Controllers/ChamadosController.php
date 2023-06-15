@@ -42,7 +42,9 @@ class ChamadosController extends Controller
 
         $chamado->titulo = $request->titulo;
         $chamado->descricao = $request->descricao;
-
+        $chamado->cliente = 1; // lucas.stein
+        $chamado->atendenteResponsavel = $request->atendente;
+        $chamado->usuarioAbriu = $request->cliente;
         $chamado->save();
 
         return redirect('/');
