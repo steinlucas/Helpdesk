@@ -22,6 +22,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
+    <div id="site" class="container">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbar">
@@ -38,11 +39,14 @@
 
         @yield('content')
 
-        <footer>
+        <footer class="text-center text-white fixed-bottom">
             </br>
-            <p>Helpdesk do Lucas Stein &copy; 2023</p>
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.3);">
+                Helpdesk do Lucas Stein &copy; 2023
+                <a class="text-reset fw-bold" href="https://github.com/steinlucas">github.com/steinlucas</a>
+            </div>
         </footer>
 
-</div>
+    </div><!-- class="container" -->
     </body>
 </html>

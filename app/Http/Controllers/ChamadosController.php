@@ -10,7 +10,30 @@ class ChamadosController extends Controller
 {
     public function index(){
         $chamados = Chamado::all();
+        
+        foreach($chamados as $chamado) {
+            $usuariosAbriram = Usuario::find($chamado->usuarioAbriu)->first()->get();
+            $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->first()->get();
 
+            foreach($usuariosAbriram as $usuario) {
+                if ($chamado->usuarioAbriu == $usuario->id) {
+                    $chamado->usuarioAbriu = $usuario->nome;
+
+                    foreach($usuariosAtendentes as $usuarioAtendente){
+                        if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
+                            $chamado->atendenteResponsavel = $usuarioAtendente->nome;
+                        }
+                    }
+
+                    if ($chamado->status == true) {
+                        $chamado->status = "Aberto";
+                    } else {
+                        $chamado->status = "Fechado";
+                    }
+                }
+            }
+        }
+        
         return view('chamados.index', ['chamados' => $chamados]);
     }
 
@@ -42,12 +65,32 @@ class ChamadosController extends Controller
     }
 
     public function show($id) {
-        $chamado = Chamado::find($id);
-        $usuarioAbriu = Usuario::find($chamado->usuarioAbriu);
-        $atendenteResponsavel = Usuario::find($chamado->atendenteResponsavel);
+        $chamados = Chamado::find($id);
+        
+        foreach($chamados as $chamado) {
+            $teste = $chamado->usuarioAbriu;
 
-        $chamado->usuarioAbriu = $usuarioAbriu->nome;
-        $chamado->atendenteResponsavel = $atendenteResponsavel->nome;
+            $usuariosAbriram = Usuario::where('id', $chamado->teste)->get();
+            $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->get();
+
+            foreach($usuariosAbriram as $usuario) {
+                if ($chamado->usuarioAbriu == $usuario->id) {
+                    $chamado->usuarioAbriu = $usuario->nome;
+
+                    foreach($usuariosAtendentes as $usuarioAtendente){
+                        if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
+                            $chamado->atendenteResponsavel = $usuarioAtendente->nome;
+                        }
+                    }
+
+                    if ($chamado->status == true) {
+                        $chamado->status = "Aberto";
+                    } else {
+                        $chamado->status = "Fechado";
+                    }
+                }
+            }
+        }
 
         return view('chamados.show', compact('chamado'));
     }
@@ -58,11 +101,4 @@ class ChamadosController extends Controller
 
         return view('chamados.create', compact(['atendentes', 'clientes']));
     }
-
-    //public function delete($id){
-    //    $chamado = Chamado::find($id);
-    //    $chamado->delete();
-    //
-    //    return redirect('/');
-    //}
 }

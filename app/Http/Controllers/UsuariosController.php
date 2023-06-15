@@ -60,15 +60,23 @@ class UsuariosController extends Controller
      */
     public function show(string $id)
     {
-        $usuario = Usuario::find($id);
+        $usuarios = Usuario::find($id);
         $tiposUsuario = UserType::all();
 
-        foreach ($tiposUsuario as $tipoUsuario) {
-            if ($usuario->tipoUsuario == $tipoUsuario->id){
-                $usuario->tipoUsuario = $tipoUsuario->description;
+        foreach ($usuarios as $usuario) {
+            foreach ($tiposUsuario as $tipoUsuario) {
+                if ($usuario->tipoUsuario == $tipoUsuario->id){
+                    $usuario->tipoUsuario = $tipoUsuario->description;
+
+                    if ($usuario->status == 1) {
+                        $usuario->status = "Ativado";
+                    } else {
+                        $usuario->status = "Desativado";
+                    }
+                }
             }
         }
-
+        
         return view('usuarios.show', compact('usuario'));
     }
 

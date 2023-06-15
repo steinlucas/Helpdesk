@@ -4,32 +4,34 @@
 
 @section('content')
 
-<div id="chamados-create-container" class="container">
-
     <h1>Abertura de chamado</h1>
     </br>
 
     <form action="{{ route('chamado.store') }}" method="POST">
         @csrf
 
-        <div class="col">
-            <label for="usuarioAbriu">Usuário de abertura</label>
-            <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu">
+        <div class="row">
+            <div class="col-md-2">
+                <label>Cliente do chamado</a>
+                </br>
+                <select name="clienteChamado">
+                    @foreach($clientes as $cliente)
+                        <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
+                    @endforeach
+                </select>
+            </div>
+            
+            <div class="col-md-2">
+                <label>Atendente do chamado</a>
+                </br>
+                <select name="atendenteChamado">
+                    @foreach($atendentes as $atendente)
+                        <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-
-        <label>Cliente do chamado</a>
-        <select name="clienteChamado">
-            @foreach($clientes as $cliente)
-                <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
-            @endforeach
-        </select>
-
-        <label>Atendente do chamado</a>
-        <select name="atendenteChamado">
-            @foreach($atendentes as $atendente)
-                <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
-            @endforeach
-        </select>
+        </br>
 
         <div class="form-group">
             <label for="titulo">Título</label>
@@ -39,13 +41,12 @@
 
         <div class="form-group">
             <label for="descricao">Descrição</label>
-            <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do chamado"></textarea>
+            <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do chamado" rows="5"></textarea>
         </div>
         </br>
 
         <input type="submit" class="btn btn-primary" value="Abrir chamado"></input>
-        
-        <a href="{{ route('chamado.index') }}" class="btn btn-danger">Cancelar</a>
+        <a href="{{ route('chamado.index') }}" class="btn btn-outline-danger">Cancelar</a>
     </form>
 
 @endsection

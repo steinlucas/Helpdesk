@@ -4,8 +4,6 @@
 
 @section('content')
 
-<div id="chamados-index-container" class="container">
-
     <h1>Chamados</h1>
     </br>
     
@@ -15,11 +13,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Número</th>
+                <th scope="col">Id</th>
                 <th scope="col">Título</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Status</th>
-                <th scope="col">Usuário abriu</th>
+                <th scope="col">Abriu</th>
                 <th scope="col">Atendente</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -28,13 +26,18 @@
             @foreach($chamados as $chamado)
             <tr>
                 <td><a href="{{ route('chamado.show', ['id' => $chamado->id]) }} " class="nav-link">{{ $chamado->id }}</a></td>
-                <td><a class="nav-link">{{ $chamado->titulo }}</a></td>
-                <td><a class="nav-link">{{ $chamado->descricao }}</a></td>
+                <td class="ellipsis"><a class="nav-link">{{ $chamado->titulo }}</a></td>
+                <td class="ellipsis"><a class="nav-link">{{ $chamado->descricao }}</a></td>
                 <td><a class="nav-link">{{ $chamado->status }}</a></td>
                 <td><a class="nav-link">{{ $chamado->usuarioAbriu }}</a></td>
                 <td><a class="nav-link">{{ $chamado->atendenteResponsavel }}</a></td>
-
-                <td><a href="/tramites/edit/{{ $chamado->id }}"><i class="material-icons">reply</i></a></td>
+                <td>
+                    <a href="/tramites/edit/{{ $chamado->id }}"><button type="button" class="btn btn-primary">Responder</button></a>
+                    <a href=" {{ route('chamado.show', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Ver</button></a>
+                    @if ($chamado->status == "Aberto")
+                        <a href="/chamados/close/{{$chamado->id}}"><button type="button" class="btn btn-outline-secondary">Encerrar</button></a>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -4,8 +4,6 @@
 
 @section('content')
 
-<div id="chamado-details-container" class="container">
-
     <h1>Detalhes do chamado</h1>
     </br>
 
@@ -16,7 +14,12 @@
         </div>
 
         <div class="col">
-            <label for="atendenteResponsavel">Atendente responsável</label>
+            <label for="status">Status</label>
+            <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu" value="{{ $chamado->status }}">
+        </div>
+
+        <div class="col">
+            <label for="atendenteResponsavel">Atendente</label>
             <input readonly type="text" class="form-control" id="atendenteResponsavel" name="atendenteResponsavel" value="{{ $chamado->atendenteResponsavel }}">
         </div>
 
@@ -25,14 +28,11 @@
             <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu" value="{{ $chamado->usuarioAbriu }}">
         </div>
 
-    </div>
-    </br>
+        <div class="col">
+            <label for="usuarioAbriu">Data de abertura</label>
+            <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu" value="{{ $chamado->created_at->format("d-m-Y h:i:s") }}">
+        </div>
 
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="1" name="status" id="flexCheckDefault" @if ($chamado->status == true) checked @endif >
-        <label class="form-check-label" for="flexCheckDefault">
-            Chamado aberto?
-        </label>
     </div>
     </br>
 
@@ -44,11 +44,13 @@
 
     <div class="form-group">
         <label for="username">Descrição</label>
-        <textarea readonly type="textarea" class="form-control" id="description" name="description" value="{{ $chamado->description }}" rows="5"></textarea>
+        <textarea readonly type="textarea" class="form-control" id="description" name="description" rows="5">{{ $chamado->descricao }}</textarea>
     </div>
     </br>
 
-
-    <a href=" {{ route('usuario.index') }} " class="btn btn-primary">Voltar</a>
+    <button onclick="window.location='{{ route("chamado.index") }}'" class="btn btn-primary">Voltar</button>
+    @if ($chamado->status == "Aberto")
+        <a href="/chamados/close/{{$chamado->id}}"><button type="button" class="btn btn-outline-secondary">Encerrar</button></a>
+    @endif
 
 @endsection

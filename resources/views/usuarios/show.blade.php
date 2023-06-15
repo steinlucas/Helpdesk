@@ -4,8 +4,6 @@
 
 @section('content')
 
-<div id="usuario-details-container" class="container">
-
     <h1>Detalhes do usuário</h1>
     </br>
     
@@ -15,13 +13,13 @@
     </div>
     </br>
 
-    <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="1" name="status" id="flexCheckDefault" @if ($usuario->status == true) checked @endif >
-            <label class="form-check-label" for="flexCheckDefault">
-                Usuário ativado?
-            </label>
-        </div>
-    </br>
+    <label>Status</a>
+        <select name="status">
+            <option value="0" @if ($usuario->status == 0) selected="selected" @endif>Desativado</option>
+            <option value="1" @if ($usuario->status == 1) selected="selected" @endif>Ativado</option>
+        </select>
+        </br>
+        </br>
 
     <div class="form-group">
         <label for="nome">Nome</label>

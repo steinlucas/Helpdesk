@@ -4,7 +4,6 @@
 
 @section('content')
 
-<div id="usuario-reate-container" class="container">
     <h1>Criação de usuário</h1>
 
     <form action="{{ route('usuario.store') }}" method="POST">
@@ -38,6 +37,7 @@
         </br>
 
         <input type="submit" class="btn btn-primary" value="Criar usuário">
+        <a href="{{ route('usuario.index') }}" class="btn btn-outline-danger">Cancelar</a>
     </form>
 
 @endsection

@@ -18,6 +18,7 @@ class Usuario extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'nome',
         'username',
         'password',

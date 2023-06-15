@@ -4,8 +4,6 @@
 
 @section('content')
 
-<div id="usuario-index-container" class="container">
-
     <h1>Usuários</h1>
     </br>
 
