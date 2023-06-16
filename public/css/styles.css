@@ -5,10 +5,10 @@
     white-space: nowrap;
 }
 
-.navbar-helpdesk {
-    padding: 2em;
-    height: 5%;
-    background-color: #808080;
+.my-navbar {
+    padding: 10px;
+    background-color: #585858;
+    opacity:0.95;
 }
 
 .texto-rodape{

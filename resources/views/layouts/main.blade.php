@@ -23,7 +23,7 @@
     </head>
     <body>
     <header>
-        <div class="fixed-top" style="padding: 10px;  background-color: #585858; opacity:0.95;">
+        <div class="fixed-top my-navbar">
             <div class="container">
                 <div>
                     <a href="{{ route('chamado.index') }}"><button type="button" class="btn btn-light">Chamados</button></a>
@@ -36,13 +36,13 @@
 
     <div id="site" class="container">
     
-        @yield('content')
+    @yield('content')
 
     </div><!-- class="container" -->
 
-</br></br></br>
+    </br></br></br>
     <footer>
-        <div class="navbar-helpdesk">
+        <div class="my-navbar">
             <div class="container">
                 <div class="text-center texto-rodape">
                     Helpdesk do Lucas Stein &copy; 2023
