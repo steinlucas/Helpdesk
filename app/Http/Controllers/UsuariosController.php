@@ -20,6 +20,12 @@ class UsuariosController extends Controller
             foreach ($tiposUsuario as $tipoUsuario) {
                 if ($usuario->tipoUsuario == $tipoUsuario->id){
                     $usuario->tipoUsuario = $tipoUsuario->description;
+
+                    if ($usuario->status == 1) {
+                        $usuario->status = "Ativado";
+                    } else {
+                        $usuario->status = "Desativado";
+                    }
                 }
             }
         }
