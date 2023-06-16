@@ -14,7 +14,7 @@
             <div class="col-md-2">
                 <label>Cliente do chamado</a>
                 </br>
-                <select name="cliente">
+                <select required name="cliente">
                     @foreach($clientes as $cliente)
                         <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
                     @endforeach
@@ -24,7 +24,7 @@
             <div class="col-md-2">
                 <label>Atendente do chamado</a>
                 </br>
-                <select name="atendente">
+                <select required name="atendente">
                     @foreach($atendentes as $atendente)
                         <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
                     @endforeach
@@ -35,13 +35,13 @@
 
         <div class="form-group">
             <label for="titulo">Título</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do chamado">
+            <input required type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do chamado">
         </div>
         </br>
 
         <div class="form-group">
             <label for="descricao">Descrição</label>
-            <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do chamado" rows="5"></textarea>
+            <textarea required type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do chamado" rows="5"></textarea>
         </div>
         </br>
 

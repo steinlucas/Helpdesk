@@ -4,3 +4,13 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
+.navbar-helpdesk {
+    padding: 2em;
+    height: 5%;
+    background-color: #808080;
+}
+
+.texto-rodape{
+    color: white;
+}

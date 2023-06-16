@@ -22,31 +22,34 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-    <div id="site" class="container">
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Chamados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href=" {{ route('usuario.index') }} " class="nav-link">Usuários</a>
-                        </li>
-                    <ul>
+    <header>
+        <div class="fixed-top" style="padding: 10px;  background-color: #585858; opacity:0.95;">
+            <div class="container">
+                <div>
+                    <a href="{{ route('chamado.index') }}"><button type="button" class="btn btn-light">Chamados</button></a>
+                    <a href="{{ route('usuario.index') }}"><button type="button" class="btn btn-light">Usuários</button></a>
                 </div>
-        </header>
+            </div>
+        </div>
+    </header>
+    </br></br></br>
 
+    <div id="site" class="container">
+    
         @yield('content')
 
-        <footer class="text-center text-white fixed-bottom">
-            </br>
-            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.3);">
-                Helpdesk do Lucas Stein &copy; 2023
-                <a class="text-reset fw-bold" href="https://github.com/steinlucas">github.com/steinlucas</a>
-            </div>
-        </footer>
-
     </div><!-- class="container" -->
+
+</br></br></br>
+    <footer>
+        <div class="navbar-helpdesk">
+            <div class="container">
+                <div class="text-center texto-rodape">
+                    Helpdesk do Lucas Stein &copy; 2023
+                    <a class="text-reset fw-bold" href="https://github.com/steinlucas" target="_blank">github.com/steinlucas</a>
+                </div>
+            </div>
+        </div>
+    </footer>
     </body>
 </html>
