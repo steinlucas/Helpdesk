@@ -51,9 +51,8 @@
         </br>
         </br>
 
-        <input type="submit" class="btn btn-success" value="Atualizar usuário">
-
         <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>
+        <input type="submit" class="btn btn-success" value="Atualizar usuário">
     </form>
 
 @endsection

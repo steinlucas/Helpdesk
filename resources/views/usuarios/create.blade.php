@@ -36,8 +36,8 @@
         </br>
         </br>
 
+        <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>
         <input type="submit" class="btn btn-primary" value="Criar usuário">
-        <a href="{{ route('usuario.index') }}" class="btn btn-outline-danger">Cancelar</a>
     </form>
 
 @endsection

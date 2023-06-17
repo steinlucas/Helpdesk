@@ -45,8 +45,8 @@
         </div>
         </br>
 
+        <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
         <input type="submit" class="btn btn-primary" value="Abrir chamado"></input>
-        <a href="{{ route('chamado.index') }}" class="btn btn-outline-danger">Cancelar</a>
     </form>
 
 @endsection
