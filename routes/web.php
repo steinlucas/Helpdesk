@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChamadosController;
 use App\Http\Controllers\TramitesController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ClientesController;
 
 // Home
 Route::get('/', [ChamadosController::class, 'index'])->name('index');
@@ -37,3 +38,11 @@ Route::post('/usuarios/store', [UsuariosController::class, 'store'])->name('usua
 Route::get('/usuarios/{id}', [UsuariosController::class, 'show'])->name('usuario.show');
 Route::get('/usuarios/edit/{id}', [UsuariosController::class, 'edit'])->name('usuario.edit');
 Route::post('/usuarios/update', [UsuariosController::class, 'update'])->name('usuario.update');
+
+// Clientes
+Route::get('/clientes', [ClientesController::class, 'index'])->name('cliente.index');
+Route::get('/clientes/create', [ClientesController::class, 'create'])->name('cliente.create');
+Route::post('/clientes/store', [ClientesController::class, 'store'])->name('cliente.store');
+Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('cliente.show');
+Route::get('/clientes/edit/{id}', [ClientesController::class, 'edit'])->name('cliente.edit');
+Route::post('/clientes/update', [ClientesController::class, 'update'])->name('cliente.update');

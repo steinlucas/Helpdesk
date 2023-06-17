@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Criação de usuário</h1>
+    <h1>Cadastro de usuário</h1>
 
     <form action="{{ route('usuario.store') }}" method="POST">
         @csrf
@@ -34,10 +34,10 @@
             @endforeach
         </select>
         </br>
+        
         </br>
-
         <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>
-        <input type="submit" class="btn btn-primary" value="Criar usuário">
+        <input type="submit" class="btn btn-primary" value="Gravar">
     </form>
 
 @endsection

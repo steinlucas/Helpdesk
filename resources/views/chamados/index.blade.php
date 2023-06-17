@@ -7,7 +7,7 @@
     <h1>Chamados</h1>
     </br>
     
-    <a href="{{ route('chamado.create') }}" class="btn btn-primary">Abrir um chamado</a>
+    <a href="{{ route('chamado.create') }}" class="btn btn-primary">Cadastrar um chamado</a>
     </br></br>
 
     <table class="table">

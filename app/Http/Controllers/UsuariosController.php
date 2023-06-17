@@ -64,20 +64,20 @@ class UsuariosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        $usuarios = Usuario::where('id', $id)->get();
+        $usuario = Usuario::where('id', $id)->get();
         $tiposUsuario = UserType::all();
 
-        foreach ($usuarios as $usuario) {
+        foreach ($usuario as $usuarioInner) {
             foreach ($tiposUsuario as $tipoUsuario) {
-                if ($usuario->tipoUsuario == $tipoUsuario->id){
-                    $usuario->tipoUsuario = $tipoUsuario->description;
+                if ($usuarioInner->tipoUsuario == $tipoUsuario->id){
+                    $usuarioInner->tipoUsuario = $tipoUsuario->description;
 
-                    if ($usuario->status == 1) {
-                        $usuario->status = "Ativado";
+                    if ($usuarioInner->status == 1) {
+                        $usuarioInner->status = "Ativado";
                     } else {
-                        $usuario->status = "Desativado";
+                        $usuarioInner->status = "Desativado";
                     }
                 }
             }
@@ -122,13 +122,5 @@ class UsuariosController extends Controller
         $usuario->save();
 
         return redirect()->to(route('usuario.index'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        // Nao pode excluir usuário.
     }
 }

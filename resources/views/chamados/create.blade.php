@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Abertura de chamado</h1>
+    <h1>Cadastro de chamado</h1>
     </br>
 
     <form action="{{ route('chamado.store') }}" method="POST">
@@ -46,7 +46,7 @@
         </br>
 
         <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
-        <input type="submit" class="btn btn-primary" value="Abrir chamado"></input>
+        <input type="submit" class="btn btn-primary" value="Gravar"></input>
     </form>
 
 @endsection

@@ -50,7 +50,7 @@
 
     <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
     @if ($chamado->status == "Aberto")
-        <a href="/chamados/close/{{$chamado->id}}"><button type="button" class="btn btn-outline-secondary">Encerrar</button></a>
+        <a href="/chamados/close/{{$chamado->id}}"><button type="button" class="btn btn-secondary">Encerrar</button></a>
     @endif
 
 @endsection

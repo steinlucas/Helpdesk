@@ -7,7 +7,7 @@
     <h1>Usuários</h1>
     </br>
 
-    <a href=" {{ route('usuario.create') }} " class="btn btn-primary">Criar um usuário</a>
+    <a href=" {{ route('usuario.create') }} " class="btn btn-primary">Cadastrar um usuário</a>
     </br></br>
 
     <table class="table">
