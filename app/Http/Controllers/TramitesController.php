@@ -28,7 +28,7 @@ class TramitesController extends Controller
     }
 
     public function show($idchamado) {
-        return Tramite::where('idchamado', $idchamado)->get();
+        return Tramite::where('idchamado', $idchamado)->orderBy('created_at', 'DESC')->get();
     }
 
 }
