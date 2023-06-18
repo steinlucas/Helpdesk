@@ -13,4 +13,10 @@ class Chamado extends Model
     {
         $this->belongsTo(Usuario::class, 'id');
     }
+
+    public function tramites()
+    {
+        return $this->hasMany(Tramite::class, 'id');
+    }
+
 }

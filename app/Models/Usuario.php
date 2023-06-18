@@ -49,13 +49,19 @@ class Usuario extends Model
         $this->belongsTo(UserType::class, 'id');
     }
 
+    public function cliente()
+    {
+        return $this->BelongsTo(Cliente::class, 'id');
+    }
+
     public function chamados()
     {
         return $this->hasMany(Chamado::class, 'id');
     }
 
-    public function cliente()
+    public function tramite()
     {
-        return $this->BelongsTo(Cliente::class, 'id');
+        return $this->hasMany(Tramite::class, 'id');
     }
+
 }
