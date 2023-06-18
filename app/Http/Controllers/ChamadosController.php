@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Chamado;
+use App\Models\Cliente;
 use App\Models\Usuario;
 
 class ChamadosController extends Controller
@@ -67,30 +68,31 @@ class ChamadosController extends Controller
     }
 
     public function show($id) {
-        $chamados = Chamado::where('id', $id)->get();
-        
-        foreach($chamados as $chamado) {
-                $usuariosAbriram = Usuario::find($chamado->usuarioAbriu)->first()->get();
-                $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->first()->get();
-    
-                foreach($usuariosAbriram as $usuario) {
-                    if ($chamado->usuarioAbriu == $usuario->id) {
-                        $chamado->usuarioAbriu = $usuario->nome;
-    
-                        foreach($usuariosAtendentes as $usuarioAtendente){
-                            if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
-                                $chamado->atendenteResponsavel = $usuarioAtendente->nome;
-                            }
-                        }
-    
-                        if ($chamado->status == true) {
-                            $chamado->status = "Aberto";
-                        } else {
-                            $chamado->status = "Fechado";
-                        }
+        $chamado = Chamado::find($id);
+        $cliente = Cliente::find($chamado->cliente);
+
+        $usuariosAbriram = Usuario::find($chamado->usuarioAbriu)->first()->get();
+        $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->first()->get();
+
+        foreach($usuariosAbriram as $usuario) {
+            if ($chamado->usuarioAbriu == $usuario->id) {
+                $chamado->usuarioAbriu = $usuario->nome;
+
+                foreach($usuariosAtendentes as $usuarioAtendente){
+                    if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
+                        $chamado->atendenteResponsavel = $usuarioAtendente->nome;
                     }
                 }
+
+                if ($chamado->status == true) {
+                    $chamado->status = "Aberto";
+                } else {
+                    $chamado->status = "Fechado";
+                }
+            }
         }
+
+        $chamado->cliente = $cliente->nome;
 
         return view('chamados.show', compact('chamado'));
     }

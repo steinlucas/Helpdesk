@@ -8,7 +8,7 @@
     </br>
 
     <div class="row">
-        <div class="col-md-1">
+        <div class="col">
             <label for="id">Id</label>
             <input readonly type="text" class="form-control" id="id" name="id" value="{{ $chamado->id }}">
         </div>
@@ -19,8 +19,16 @@
         </div>
 
         <div class="col">
-            <label for="atendenteResponsavel">Atendente</label>
-            <input readonly type="text" class="form-control" id="atendenteResponsavel" name="atendenteResponsavel" value="{{ $chamado->atendenteResponsavel }}">
+            <label for="usuarioAbriu">Data de abertura</label>
+            <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu" value="{{ $chamado->created_at->format("d-m-Y h:i:s") }}">
+        </div>
+    </div>
+    </br>
+
+    <div class="row">
+        <div class="col">
+            <label for="atendenteResponsavel">Cliente</label>
+            <input readonly type="text" class="form-control" id="atendenteResponsavel" name="atendenteResponsavel" value="{{ $chamado->cliente }}">
         </div>
 
         <div class="col">
@@ -29,10 +37,9 @@
         </div>
 
         <div class="col">
-            <label for="usuarioAbriu">Data de abertura</label>
-            <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu" value="{{ $chamado->created_at->format("d-m-Y h:i:s") }}">
+            <label for="atendenteResponsavel">Atendente</label>
+            <input readonly type="text" class="form-control" id="atendenteResponsavel" name="atendenteResponsavel" value="{{ $chamado->atendenteResponsavel }}">
         </div>
-
     </div>
     </br>
 
