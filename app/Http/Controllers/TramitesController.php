@@ -24,11 +24,10 @@ class TramitesController extends Controller
 
         $tramite->save();
 
-        return redirect()->to(route('chamado.index'));
+        return redirect()->to(route('chamado.show', $tramite->idchamado));
     }
 
     public function show($idchamado) {
         return Tramite::where('idchamado', $idchamado)->orderBy('created_at', 'DESC')->get();
     }
-
 }

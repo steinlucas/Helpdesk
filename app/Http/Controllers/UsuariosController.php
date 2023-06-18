@@ -86,7 +86,7 @@ class UsuariosController extends Controller
                     $usuario->idcliente = $cliente->nome;
                 }
             }
-            
+
             foreach ($tiposUsuario as $tipoUsuario) {
                 if ($usuario->tipoUsuario == $tipoUsuario->id){
                     $usuario->tipoUsuario = $tipoUsuario->description;

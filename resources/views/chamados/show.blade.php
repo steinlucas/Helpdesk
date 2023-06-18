@@ -4,6 +4,16 @@
 
 @section('content')
 
+    <script>
+        function showDiv() {
+            document.getElementById('divtramite').style.display = "block";
+        }
+
+        function hideDiv() {
+            document.getElementById('divtramite').style.display = "";
+        }
+    </script>
+
     <h1>Detalhes do chamado</h1>
     </br>
 
@@ -57,11 +67,27 @@
     </br>
 
     <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
-    <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Adicionar trâmite (falta implementar aqui)</a>
     @if ($chamado->status == "Aberto")
+        <a class="btn btn-outline-primary" name="answer" value="Show Div" onclick="showDiv()">Adicionar trâmite</a>
         <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar</button></a>
     @endif
     </br>
+
+    <div class="form-group hide-div" id="divtramite">
+        </br>
+        <form action=" {{ route('tramite.store') }} " method="POST">
+            @csrf
+            <input hidden type="text" class="form-control" id="tipocadastrotramite" name="tipocadastrotramite" value="pordentrodochamado">
+            <input hidden type="text" class="form-control" id="idchamado" name="idchamado" value="{{ $chamado->id }}">
+            <label for="descricao">Descrição</label>
+            <textarea type="textarea" class="form-control" id="descricao" name="descricao" rows="5" placeholder="Descrição do trâmite"></textarea>
+            </br>
+
+            <input type="submit" class="btn btn-primary" value="Gravar trâmite"></input>
+            <a class="btn btn-outline-danger" name="answer" value="Cancelar trâmite" onclick="hideDiv()">Cancelar</a>
+        </form>
+        </br>
+    </div>
 
     </br>
     <h4>Trâmites</h4>
