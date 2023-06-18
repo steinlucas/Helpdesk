@@ -69,7 +69,7 @@
 <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
 @if ($chamado->status == "Aberto")
     <a class="btn btn-outline-primary" name="answer" value="Show Div" onclick="showDiv()">Adicionar trâmite</a>
-    <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar</button></a>
+    <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar chamado</button></a>
 @endif
 </br>
 

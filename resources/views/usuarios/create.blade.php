@@ -5,6 +5,7 @@
 @section('content')
 
 <h1>Cadastro de usuário</h1>
+</br>
 
 <form action="{{ route('usuario.store') }}" method="POST">
     @csrf
