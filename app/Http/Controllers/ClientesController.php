@@ -80,19 +80,19 @@ class ClientesController extends Controller
     }
 
     public function show($id) {
-        $cliente = Cliente::where('id', $id)->get();
-
-        foreach($cliente as $clienteInner) {
-            $usuarios = Usuario::find($clienteInner->idusuario)->first()->get();
+        $clienteInner = Cliente::where('id', $id)->get();
+        
+        foreach($clienteInner as $cliente) {
+            $usuarios = Usuario::where('idcliente', $cliente->idusuario)->get();
 
             foreach($usuarios as $usuario) {
-                if ($usuario->idcliente == $clienteInner->id) {
-                    $clienteInner->idusuario = $usuario->username;
+                if ($usuario->idcliente == $cliente->id) {
+                    $cliente->idusuario = $usuario->username;
 
-                    if ($clienteInner->status == true) {
-                        $clienteInner->status = "Ativado";
+                    if ($cliente->status == true) {
+                        $cliente->status = "Ativado";
                     } else {
-                        $clienteInner->status = "Desativado";
+                        $cliente->status = "Desativado";
                     }
                 }
             }
