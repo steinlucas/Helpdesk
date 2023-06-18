@@ -31,8 +31,16 @@
 
     <div class="col">
         <label for="dataAbertura">Data de abertura</label>
-        <input readonly type="text" class="form-control" id="dataAbertura" name="dataAbertura" value="{{ $chamado->created_at->format("d/m/Y") }} às {{ $chamado->created_at->format("h:i:s") }}">
+        <input readonly type="text" class="form-control" id="dataAbertura" value="{{ $chamado->created_at->format("d/m/Y") }} às {{ $chamado->created_at->format("h:i:s") }}">
     </div>
+
+    @if ($chamado->status == "Fechado")
+        <div class="col">
+            <label for="dataFechamento">Data de fechamento</label>
+            <input readonly type="text" class="form-control" id="dataFechamento" value="{{ $chamado->updated_at->format("d/m/Y") }} às {{ $chamado->updated_at->format("h:i:s") }}">
+        </div>
+    @endif
+
 </div>
 </br>
 
