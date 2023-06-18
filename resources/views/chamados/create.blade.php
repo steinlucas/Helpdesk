@@ -9,7 +9,6 @@
 
     <form action="{{ route('chamado.store') }}" method="POST">
         @csrf
-
         <div class="row">
             <div class="col-md-2">
                 <label>Cliente do chamado</a>

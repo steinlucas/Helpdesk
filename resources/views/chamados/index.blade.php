@@ -32,7 +32,11 @@
                 <td><a class="nav-link">{{ $chamado->usuarioAbriu }}</a></td>
                 <td><a class="nav-link">{{ $chamado->atendenteResponsavel }}</a></td>
                 <td>
-                    <a href="/tramites/edit/{{ $chamado->id }}"><button type="button" class="btn btn-primary">Responder</button></a>
+                    <form action="{{ route('tramite.create') }}" method="POST">
+                        @csrf
+                        <input hidden type="text" name="idchamado" value="{{$chamado->id}}">
+                        <button type="submit" class="btn btn-primary">Responder</button>
+                    </form>
                     <a href=" {{ route('chamado.show', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Ver</button></a>
                     @if ($chamado->status == "Aberto")
                         <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar</button></a>

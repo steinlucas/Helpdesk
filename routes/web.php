@@ -29,6 +29,7 @@ Route::get('/chamados/{id}', [ChamadosController::class, 'show'])->name('chamado
 Route::post('/chamados/close', [ChamadosController::class, 'close'])->name('chamado.close');
 
 // Tramites
+Route::post('/tramites/create', [TramitesController::class, 'create'])->name('tramite.create');
 Route::post('/tramites/store', [TramitesController::class, 'store'])->name('tramite.store');
 
 // Usuarios

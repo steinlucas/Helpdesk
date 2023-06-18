@@ -48,7 +48,6 @@
             <div class="container">
                 <div class="text-center texto-rodape">
                     Helpdesk do Lucas Stein &copy; 2023
-                    <a class="text-reset fw-bold" href="https://github.com/steinlucas" target="_blank">github.com/steinlucas</a>
                 </div>
             </div>
         </div>
