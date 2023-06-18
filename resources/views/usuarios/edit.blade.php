@@ -52,7 +52,7 @@
         </br>
 
         <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>
-        <input type="submit" class="btn btn-success" value="Atualizar usuário">
+        <input type="submit" class="btn btn-primary" value="Atualizar usuário">
     </form>
 
 @endsection

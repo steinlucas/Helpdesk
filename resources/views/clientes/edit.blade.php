@@ -32,7 +32,7 @@
 
         </br>
         <a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>
-        <input type="submit" class="btn btn-success" value="Atualizar cliente">
+        <input type="submit" class="btn btn-primary" value="Atualizar cliente">
     </form>
 
 @endsection

@@ -39,7 +39,7 @@
     </select>
 
     </br>
-    <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
+    <a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>
     <input type="submit" class="btn btn-primary" value="Gravar"></input>
 </form>
 
