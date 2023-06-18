@@ -35,7 +35,7 @@
                     <a href="/tramites/edit/{{ $chamado->id }}"><button type="button" class="btn btn-primary">Responder</button></a>
                     <a href=" {{ route('chamado.show', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Ver</button></a>
                     @if ($chamado->status == "Aberto")
-                        <a href="/chamados/close/{{$chamado->id}}"><button type="button" class="btn btn-outline-secondary">Encerrar</button></a>
+                        <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar</button></a>
                     @endif
                 </td>
             </tr>

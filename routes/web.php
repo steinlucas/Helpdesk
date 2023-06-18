@@ -26,10 +26,10 @@ Route::get('/chamados', [ChamadosController::class, 'index'])->name('chamado.ind
 Route::get('/chamados/create', [ChamadosController::class, 'create'])->name('chamado.create');
 Route::post('/chamados/store', [ChamadosController::class, 'store'])->name('chamado.store');
 Route::get('/chamados/{id}', [ChamadosController::class, 'show'])->name('chamado.show');
-Route::get('/chamados/close/{id}', [ChamadosController::class, 'close'])->name('chamado.close');
+Route::post('/chamados/close', [ChamadosController::class, 'close'])->name('chamado.close');
 
 // Tramites
-Route::get('/tramites/create/{idchamado}', [TramitesController::class, 'create'])->name('tramite.create');
+Route::post('/tramites/store', [TramitesController::class, 'store'])->name('tramite.store');
 
 // Usuarios
 Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuario.index');
