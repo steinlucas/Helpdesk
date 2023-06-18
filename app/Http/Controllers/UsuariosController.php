@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\UserType;
+use App\Models\Cliente;
 
 class UsuariosController extends Controller
 {
@@ -15,16 +16,25 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::all();
         $tiposUsuario = UserType::all();
+        $clientes = Cliente::all();
 
         foreach ($usuarios as $usuario) {
-            foreach ($tiposUsuario as $tipoUsuario) {
-                if ($usuario->tipoUsuario == $tipoUsuario->id){
-                    $usuario->tipoUsuario = $tipoUsuario->description;
+            foreach ($clientes as $cliente) {
+                if ($usuario->idcliente == $cliente->id) {
+                    $usuario->idcliente = $cliente->nome;
+                }
+            }
 
-                    if ($usuario->status == 1) {
-                        $usuario->status = "Ativado";
-                    } else {
-                        $usuario->status = "Desativado";
+            foreach ($clientes as $cliente) {
+                foreach ($tiposUsuario as $tipoUsuario) {
+                    if ($usuario->tipoUsuario == $tipoUsuario->id){
+                        $usuario->tipoUsuario = $tipoUsuario->description;
+
+                        if ($usuario->status == 1) {
+                            $usuario->status = "Ativado";
+                        } else {
+                            $usuario->status = "Desativado";
+                        }
                     }
                 }
             }
@@ -68,8 +78,15 @@ class UsuariosController extends Controller
     {
         $usuarioInner = Usuario::where('id', $id)->get();
         $tiposUsuario = UserType::all();
+        $clientes = Cliente::all();
 
         foreach ($usuarioInner as $usuario) {
+            foreach ($clientes as $cliente) {
+                if ($usuario->idcliente == $cliente->id) {
+                    $usuario->idcliente = $cliente->nome;
+                }
+            }
+            
             foreach ($tiposUsuario as $tipoUsuario) {
                 if ($usuario->tipoUsuario == $tipoUsuario->id){
                     $usuario->tipoUsuario = $tipoUsuario->description;
@@ -121,6 +138,24 @@ class UsuariosController extends Controller
         $usuario->tipoUsuario = $tipoUsuario->id;
         $usuario->save();
 
+        return redirect()->to(route('usuario.index'));
+    }
+
+    public function enable(string $id)
+    {
+        $usuario = Usuario::find($id);
+        $usuario->status = 1;
+
+        $usuario->save();
+        return redirect()->to(route('usuario.index'));
+    }
+
+    public function disable(string $id)
+    {
+        $usuario = Usuario::find($id);
+        $usuario->status = 0;
+
+        $usuario->save();
         return redirect()->to(route('usuario.index'));
     }
 }

@@ -26,7 +26,7 @@ Route::get('/chamados', [ChamadosController::class, 'index'])->name('chamado.ind
 Route::get('/chamados/create', [ChamadosController::class, 'create'])->name('chamado.create');
 Route::post('/chamados/store', [ChamadosController::class, 'store'])->name('chamado.store');
 Route::get('/chamados/{id}', [ChamadosController::class, 'show'])->name('chamado.show');
-Route::post('/chamados/close', [ChamadosController::class, 'close'])->name('chamado.close');
+Route::get('/chamados/close/{id}', [ChamadosController::class, 'close'])->name('chamado.close');
 
 // Tramites
 Route::post('/tramites/create', [TramitesController::class, 'create'])->name('tramite.create');
@@ -39,6 +39,8 @@ Route::post('/usuarios/store', [UsuariosController::class, 'store'])->name('usua
 Route::get('/usuarios/{id}', [UsuariosController::class, 'show'])->name('usuario.show');
 Route::get('/usuarios/edit/{id}', [UsuariosController::class, 'edit'])->name('usuario.edit');
 Route::post('/usuarios/update', [UsuariosController::class, 'update'])->name('usuario.update');
+Route::get('/usuarios/enable/{id}', [UsuariosController::class, 'enable'])->name('usuario.enable');
+Route::get('/usuarios/disable/{id}', [UsuariosController::class, 'disable'])->name('usuario.disable');
 
 // Clientes
 Route::get('/clientes', [ClientesController::class, 'index'])->name('cliente.index');
