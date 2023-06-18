@@ -17,7 +17,7 @@
                 <th scope="col">Título</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Status</th>
-                <th scope="col">Abriu</th>
+                <th scope="col">Quem abriu</th>
                 <th scope="col">Atendente</th>
                 <th scope="col">Ações</th>
             </tr>

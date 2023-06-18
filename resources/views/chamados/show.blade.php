@@ -32,7 +32,7 @@
         </div>
 
         <div class="col">
-            <label for="usuarioAbriu">Usuário que abriu</label>
+            <label for="usuarioAbriu">Quem abriu</label>
             <input readonly type="text" class="form-control" id="usuarioAbriu" name="usuarioAbriu" value="{{ $chamado->usuarioAbriu }}">
         </div>
 
