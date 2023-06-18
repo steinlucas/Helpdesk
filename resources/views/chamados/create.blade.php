@@ -4,48 +4,48 @@
 
 @section('content')
 
-    <h1>Cadastro de chamado</h1>
+<h1>Cadastro de chamado</h1>
+</br>
+
+<form action="{{ route('chamado.store') }}" method="POST">
+    @csrf
+    <div class="row">
+        <div class="col-md-2">
+            <label>Cliente do chamado</a>
+            </br>
+            <select required name="cliente">
+                @foreach($clientes as $cliente)
+                    <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
+                @endforeach
+            </select>
+        </div>
+        
+        <div class="col-md-2">
+            <label>Atendente do chamado</a>
+            </br>
+            <select required name="atendente">
+                @foreach($atendentes as $atendente)
+                    <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     </br>
 
-    <form action="{{ route('chamado.store') }}" method="POST">
-        @csrf
-        <div class="row">
-            <div class="col-md-2">
-                <label>Cliente do chamado</a>
-                </br>
-                <select required name="cliente">
-                    @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
-                    @endforeach
-                </select>
-            </div>
-            
-            <div class="col-md-2">
-                <label>Atendente do chamado</a>
-                </br>
-                <select required name="atendente">
-                    @foreach($atendentes as $atendente)
-                        <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        </br>
+    <div class="form-group">
+        <label for="titulo">Título</label>
+        <input required type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do chamado">
+    </div>
+    </br>
 
-        <div class="form-group">
-            <label for="titulo">Título</label>
-            <input required type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do chamado">
-        </div>
-        </br>
+    <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea required type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do chamado" rows="5"></textarea>
+    </div>
+    </br>
 
-        <div class="form-group">
-            <label for="descricao">Descrição</label>
-            <textarea required type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do chamado" rows="5"></textarea>
-        </div>
-        </br>
-
-        <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
-        <input type="submit" class="btn btn-primary" value="Gravar"></input>
-    </form>
+    <a href=" {{ route('chamado.index') }} " class="btn btn-outline-primary">Voltar</a>
+    <input type="submit" class="btn btn-primary" value="Gravar"></input>
+</form>
 
 @endsection
