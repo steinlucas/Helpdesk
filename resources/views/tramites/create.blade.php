@@ -9,7 +9,7 @@
     <form action="{{ route('tramite.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="idchamado">Responder para o chamado</label>
+            <label for="idchamado">Responder para o chamado número <?php echo $_POST['idchamado']; ?>.</label>
             <input hidden type="text" class="form-control" id="idchamado" name="idchamado" value="<?php echo $_POST['idchamado']; ?>">
         </div>
         </br>

@@ -14,3 +14,7 @@
 .texto-rodape{
     color: white;
 }
+
+.form-td {
+    display: inline;
+}

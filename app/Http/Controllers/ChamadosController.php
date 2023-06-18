@@ -38,7 +38,7 @@ class ChamadosController extends Controller
         return view('chamados.index', ['chamados' => $chamados]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request) {
         $chamado = new Chamado;
 
         $chamado->titulo = $request->titulo;
@@ -48,7 +48,7 @@ class ChamadosController extends Controller
         $chamado->usuarioAbriu = $request->cliente;
         $chamado->save();
 
-        return redirect('/');
+        return redirect()->to(route('chamado.index'));
     }
 
     public function close($id) {
@@ -56,7 +56,7 @@ class ChamadosController extends Controller
         $chamado->status = false;
         $chamado->save();
 
-        return redirect('/');
+        return redirect()->to(route('chamado.index'));
     }
 
     public function reopen($id) {
@@ -64,7 +64,7 @@ class ChamadosController extends Controller
         $chamado->status = true;
         $chamado->save();
 
-        return redirect('/');
+        return redirect()->to(route('chamado.index'));
     }
 
     public function show($id) {
@@ -94,7 +94,19 @@ class ChamadosController extends Controller
 
         $chamado->cliente = $cliente->nome;
 
-        return view('chamados.show', compact('chamado'));
+        $tramites = app('App\Http\Controllers\TramitesController')->show($chamado->id);
+        
+        foreach ($tramites as $tramite) {
+            $usuariosTramitaram = Usuario::find($tramite->idusuario)->first()->get();
+
+            foreach ($usuariosTramitaram as $usuarioTramite){
+                if ($usuarioTramite->id == $tramite->idusuario) {
+                    $tramite->idusuario = $usuarioTramite->username;
+                }
+            }
+        }
+
+        return view('chamados.show', compact(['chamado', 'tramites']));
     }
 
     public function create() {

@@ -27,4 +27,8 @@ class TramitesController extends Controller
         return redirect()->to(route('chamado.index'));
     }
 
+    public function show($idchamado) {
+        return Tramite::where('idchamado', $idchamado)->get();
+    }
+
 }
