@@ -14,6 +14,7 @@
     }
 ?>
 
+<p>Id usuário: <?php echo $_SESSION['idusuario']; ?>.</p>
 <p>Username: <?php echo $_SESSION['username']; ?>.</p>
 <p>Nome: <?php echo $_SESSION['nome']; ?>.</p>
 <p>Status: <?php echo $_SESSION['status']; ?>.</p>
@@ -22,9 +23,9 @@
 
 <h1>Chamados</h1>
 </br>
-    <form action="{{ route('chamado.createmiddleware') }}" method="post">
+    <form action="{{ route('chamado.createmiddleware') }}" method="POST">
         @csrf
-        <input type="text" name="username" value="<?php echo $_SESSION['username']; ?>">
+        <input type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
         <input type="text" name="idcliente" value="<?php echo $_SESSION['idcliente']; ?>">
         <input type="text" name="tipousuario" value="<?php echo $_SESSION['tipousuario']; ?>">
         <button type="submit" class="btn btn-primary">Cadastrar um chamado novo</button>

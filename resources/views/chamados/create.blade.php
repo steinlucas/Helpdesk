@@ -14,17 +14,17 @@
 <form action="{{ route('chamado.store') }}" method="POST">
     @csrf
     <div class="row">
-        <input hidden type="text" name="idusuario" value="{{ $usuarioAbertura }}">
+        <input hidden type="text" name="idusuario" value="{{ $idusuario }}">
 
-            <div class="col-md-2">
-                <label>Cliente do chamado</a>
-                </br>
-                <select required name="cliente">
-                    @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
-                    @endforeach
-                </select>
-            </div>
+        <div class="col-md-2">
+            <label>Cliente do chamado</a>
+            </br>
+            <select required name="cliente">
+                @foreach($clientes as $cliente)
+                    <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="col-md-2">
             <label>Atendente do chamado</a>

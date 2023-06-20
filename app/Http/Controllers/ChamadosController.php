@@ -117,11 +117,7 @@ class ChamadosController extends Controller
     public function create(Request $request) {
         $atendentes = Usuario::where('tipoUsuario', 2)->get();
         $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->get();
-        $usuariosAbertura = Usuario::where('username', $request->username)->get();
-        
-        foreach($usuariosAbertura as $auxUsuarioAbertura) {
-            $usuarioAbertura = $auxUsuarioAbertura->id;
-        }
+        $idusuario = $request->idusuario;
 
         if ($request->tipousuario == 1 || $request->tipousuario == 2) {
             $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->get();
@@ -129,6 +125,6 @@ class ChamadosController extends Controller
             $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->where('id', $request->idcliente)->get();
         }
 
-        return view('chamados.create', compact(['atendentes', 'clientes', 'usuarioAbertura']));
+        return view('chamados.create', compact(['atendentes', 'clientes', 'idusuario']));
     }
 }

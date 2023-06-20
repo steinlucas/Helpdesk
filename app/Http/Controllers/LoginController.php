@@ -25,6 +25,7 @@ class LoginController extends Controller
             if (password_verify($request->password, $usuario->password) == true) {
 
                 session_start();
+                $_SESSION['idusuario'] = $usuario['id'];
                 $_SESSION['username'] = $usuario['username'];
                 $_SESSION['nome'] = $usuario['nome'];
                 $_SESSION['status'] = $usuario['status'];

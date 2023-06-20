@@ -1,13 +1,20 @@
+
 @extends('layouts.main')
 
 @section('title', 'Helpdesk')
 
 @section('content')
 
+<?php
+    session_start();
+?>
+
 <h1>Cadastro de trâmite</h1>
 
 <form action="{{ route('tramite.store') }}" method="POST">
     @csrf
+    <input type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
+
     <div class="form-group">
         <label for="idchamado">Responder para o chamado número <?php echo $_POST['idchamado']; ?>.</label>
         <input hidden type="text" class="form-control" id="idchamado" name="idchamado" value="<?php echo $_POST['idchamado']; ?>">

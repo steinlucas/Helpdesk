@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tramite;
+use App\Models\Usuario;
 
 class TramitesController extends Controller
 {
@@ -15,10 +16,17 @@ class TramitesController extends Controller
         $tramite = new Tramite;
 
         $tramitesExistentes = Tramite::where('idchamado', $request->idchamado)->get();
-        $novoseqtramite = count($tramitesExistentes) + 1;
 
+        $novoseqtramite = count($tramitesExistentes);
+
+        if ($novoseqtramite == 0) {
+            $novoseqtramite = 1;
+        } else {
+            $novoseqtramite = $novoseqtramite + 1; 
+        }
+        
         $tramite->seqtramite = $novoseqtramite;
-        $tramite->idusuario = 1; //lucas.stein
+        $tramite->idusuario = $request->idusuario;
         $tramite->idchamado = $request->idchamado;
         $tramite->descricao = $request->descricao;
 
