@@ -41,11 +41,12 @@ class ChamadosController extends Controller
     public function store(Request $request) {
         $chamado = new Chamado;
 
+        $chamado->usuarioAbriu = $request->idusuario;
+        $chamado->cliente = $request->cliente;
+        $chamado->atendenteResponsavel = $request->atendente;
         $chamado->titulo = $request->titulo;
         $chamado->descricao = $request->descricao;
-        $chamado->cliente = 1; // lucas.stein
-        $chamado->atendenteResponsavel = $request->atendente;
-        $chamado->usuarioAbriu = $request->cliente;
+        
         $chamado->save();
 
         return redirect()->to(route('chamado.index'));
@@ -109,10 +110,25 @@ class ChamadosController extends Controller
         return view('chamados.show', compact(['chamado', 'tramites']));
     }
 
-    public function create() {
-        $atendentes = Usuario::where('tipoUsuario', 1)->get();
-        $clientes = Usuario::where('tipoUsuario', 2)->get();
+    public function createmiddleware(Request $request) {
+        return $this->create($request);
+    }
 
-        return view('chamados.create', compact(['atendentes', 'clientes']));
+    public function create(Request $request) {
+        $atendentes = Usuario::where('tipoUsuario', 2)->get();
+        $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->get();
+        $usuariosAbertura = Usuario::where('username', $request->username)->get();
+        
+        foreach($usuariosAbertura as $auxUsuarioAbertura) {
+            $usuarioAbertura = $auxUsuarioAbertura->id;
+        }
+
+        if ($request->tipousuario == 1 || $request->tipousuario == 2) {
+            $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->get();
+        } else {
+            $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->where('id', $request->idcliente)->get();
+        }
+
+        return view('chamados.create', compact(['atendentes', 'clientes', 'usuarioAbertura']));
     }
 }

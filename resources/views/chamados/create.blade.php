@@ -4,22 +4,28 @@
 
 @section('content')
 
+<?php
+    session_start();
+?>
+
 <h1>Cadastro de chamado</h1>
 </br>
 
 <form action="{{ route('chamado.store') }}" method="POST">
     @csrf
     <div class="row">
-        <div class="col-md-2">
-            <label>Cliente do chamado</a>
-            </br>
-            <select required name="cliente">
-                @foreach($clientes as $cliente)
-                    <option value="{{ $cliente->id }}">{{ $cliente->username }}</option>
-                @endforeach
-            </select>
-        </div>
-        
+        <input hidden type="text" name="idusuario" value="{{ $usuarioAbertura }}">
+
+            <div class="col-md-2">
+                <label>Cliente do chamado</a>
+                </br>
+                <select required name="cliente">
+                    @foreach($clientes as $cliente)
+                        <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+                    @endforeach
+                </select>
+            </div>
+
         <div class="col-md-2">
             <label>Atendente do chamado</a>
             </br>

@@ -4,10 +4,33 @@
 
 @section('content')
 
+<?php
+    session_start();
+
+    if (!isset($_SESSION)) {
+        //session_unset();
+        //session_destroy();
+        header("location: ../../sessions/index.blade.php");
+    }
+?>
+
+<p>Username: <?php echo $_SESSION['username']; ?>.</p>
+<p>Nome: <?php echo $_SESSION['nome']; ?>.</p>
+<p>Status: <?php echo $_SESSION['status']; ?>.</p>
+<p>IdCliente <?php echo $_SESSION['idcliente']; ?>.</p>
+<p>TipoUsuario <?php echo $_SESSION['tipousuario']; ?>.</p>
+
 <h1>Chamados</h1>
 </br>
+    <form action="{{ route('chamado.createmiddleware') }}" method="post">
+        @csrf
+        <input type="text" name="username" value="<?php echo $_SESSION['username']; ?>">
+        <input type="text" name="idcliente" value="<?php echo $_SESSION['idcliente']; ?>">
+        <input type="text" name="tipousuario" value="<?php echo $_SESSION['tipousuario']; ?>">
+        <button type="submit" class="btn btn-primary">Cadastrar um chamado novo</button>
+    </form>
 
-<a href="{{ route('chamado.create') }}" class="btn btn-primary">Cadastrar um chamado</a>
+<!--<a href="{{ route('chamado.create', ['idcliente' => $_SESSION['idcliente']]) }}" class="btn btn-primary">Cadastrar um chamado</a>-->
 </br></br>
 
 <table class="table">
