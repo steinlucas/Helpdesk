@@ -4,6 +4,12 @@
 
 @section('content')
 
+<?php
+    session_start();
+?>
+
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+
 <h1>Usuários</h1>
 </br>
 
@@ -25,24 +31,26 @@
     </thead>
     <tbody>
         @foreach($usuarios as $usuario)
-        <tr>
-            <td><a class="nav-link">{{ $usuario->id }}</a></td>
-            <td><a class="nav-link">{{ $usuario->nome }}</a></td>
-            <td><a class="nav-link">{{ $usuario->username }}</a></td>
-            <td><a class="nav-link">{{ $usuario->idcliente }}</a></td>
-            <td><a class="nav-link">{{ $usuario->tipoUsuario }}</a></td>
-            <td><a class="nav-link">{{ $usuario->status }}</a></td>
-            <td><a class="nav-link">{{ $usuario->created_at->format("d/m/Y") }}</a></td>
-            <td>
-                <a href=" {{ route('usuario.show', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
-                <a href=" {{ route('usuario.edit', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
-                @if ($usuario->status == "Desativado")
-                    <a href=" {{ route('usuario.enable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Ativar</button></a>
-                @else
-                    <a href=" {{ route('usuario.disable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Desativar</button></a>
-                @endif
-            </td>
-        </tr>
+            @if ($usuario->idcliente == $_SESSION['nomecliente'] || $_SESSION['username'] == "admin")
+            <tr>
+                <td><a class="nav-link">{{ $usuario->id }}</a></td>
+                <td><a class="nav-link">{{ $usuario->nome }}</a></td>
+                <td><a class="nav-link">{{ $usuario->username }}</a></td>
+                <td><a class="nav-link">{{ $usuario->idcliente }}</a></td>
+                <td><a class="nav-link">{{ $usuario->tipoUsuario }}</a></td>
+                <td><a class="nav-link">{{ $usuario->status }}</a></td>
+                <td><a class="nav-link">{{ $usuario->created_at->format("d/m/Y") }}</a></td>
+                <td>
+                    <a href=" {{ route('usuario.show', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
+                    <a href=" {{ route('usuario.edit', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
+                    @if ($usuario->status == "Desativado")
+                        <a href=" {{ route('usuario.enable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Ativar</button></a>
+                    @else
+                        <a href=" {{ route('usuario.disable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Desativar</button></a>
+                    @endif
+                </td>
+            </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

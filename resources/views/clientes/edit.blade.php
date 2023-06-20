@@ -4,6 +4,12 @@
 
 @section('content')
 
+<?php
+    session_start();
+?>
+
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+
 <h1>Atualizar cliente</h1>
 </br>
 
@@ -23,12 +29,14 @@
     </div>
     </br>
 
-    <label>Status</a>
-    <select name="status">
-        <option value="1" @if ($cliente->status == "Ativado") selected="selected" @endif>Ativado</option>
-        <option value="0" @if ($cliente->status == "Desativado") selected="selected" @endif>Desativado</option>
-    </select>
-    </br>
+    @if ($_SESSION['username'] == "admin")
+        <label>Status</a>
+        <select name="status">
+            <option value="1" @if ($cliente->status == "Ativado") selected="selected" @endif>Ativado</option>
+            <option value="0" @if ($cliente->status == "Desativado") selected="selected" @endif>Desativado</option>
+        </select>
+        </br>
+    @endif
 
     </br>
     <a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>

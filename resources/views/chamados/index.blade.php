@@ -6,32 +6,19 @@
 
 <?php
     session_start();
-
-    if (!isset($_SESSION)) {
-        //session_unset();
-        //session_destroy();
-        header("location: ../../sessions/index.blade.php");
-    }
 ?>
 
-<p>Id usuário: <?php echo $_SESSION['idusuario']; ?>.</p>
-<p>Username: <?php echo $_SESSION['username']; ?>.</p>
-<p>Nome: <?php echo $_SESSION['nome']; ?>.</p>
-<p>Status: <?php echo $_SESSION['status']; ?>.</p>
-<p>IdCliente <?php echo $_SESSION['idcliente']; ?>.</p>
-<p>TipoUsuario <?php echo $_SESSION['tipousuario']; ?>.</p>
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
 
 <h1>Chamados</h1>
 </br>
     <form action="{{ route('chamado.createmiddleware') }}" method="POST">
         @csrf
-        <input type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
-        <input type="text" name="idcliente" value="<?php echo $_SESSION['idcliente']; ?>">
-        <input type="text" name="tipousuario" value="<?php echo $_SESSION['tipousuario']; ?>">
+        <input hidden type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
+        <input hidden type="text" name="idcliente" value="<?php echo $_SESSION['idcliente']; ?>">
+        <input hidden type="text" name="tipousuario" value="<?php echo $_SESSION['tipousuario']; ?>">
         <button type="submit" class="btn btn-primary">Cadastrar um chamado novo</button>
     </form>
-
-<!--<a href="{{ route('chamado.create', ['idcliente' => $_SESSION['idcliente']]) }}" class="btn btn-primary">Cadastrar um chamado</a>-->
 </br></br>
 
 <table class="table">
@@ -48,26 +35,27 @@
     </thead>
     <tbody>
         @foreach($chamados as $chamado)
-        <tr>
-            <td><a href="{{ route('chamado.show', ['id' => $chamado->id]) }} " class="nav-link">{{ $chamado->id }}</a></td>
-            <td class="collapse-td"><a class="nav-link">{{ $chamado->titulo }}</a></td>
-            <td><a class="nav-link">{{ $chamado->status }}</a></td>
-            <td><a class="nav-link">{{ $chamado->usuarioAbriu }}</a></td>
-            <td><a class="nav-link">{{ $chamado->atendenteResponsavel }}</a></td>
-            <td><a class="nav-link">{{ $chamado->created_at->format("d/m/Y") }}</a></td>
-            
-            <td>
-                <a href=" {{ route('chamado.show', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Ver</button></a>
-                @if ($chamado->status == "Aberto")
-                    <form class="form-td" action="{{ route('tramite.create') }}" method="POST">
-                        @csrf
-                        <input hidden type="text" name="idchamado" value="{{ $chamado->id }}">
-                        <button type="submit" class="btn btn-primary">Responder</button>
-                    </form>
-                    <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar</button></a>
-                @endif
-            </td>
-        </tr>
+            @if ($chamado->cliente == $_SESSION['idcliente'] || $chamado->atendenteResponsavel == $_SESSION['nome'] || $_SESSION['username'] == "admin")
+            <tr>
+                <td><a href="{{ route('chamado.show', ['id' => $chamado->id]) }} " class="nav-link">{{ $chamado->id }}</a></td>
+                <td class="collapse-td"><a class="nav-link">{{ $chamado->titulo }}</a></td>
+                <td><a class="nav-link">{{ $chamado->status }}</a></td>
+                <td><a class="nav-link">{{ $chamado->usuarioAbriu }}</a></td>
+                <td><a class="nav-link">{{ $chamado->atendenteResponsavel }}</a></td>
+                <td><a class="nav-link">{{ $chamado->created_at->format("d/m/Y") }}</a></td>
+                <td>
+                    <a href=" {{ route('chamado.show', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Ver</button></a>
+                    @if ($chamado->status == "Aberto")
+                        <form class="form-td" action="{{ route('tramite.create') }}" method="POST">
+                            @csrf
+                            <input hidden type="text" name="idchamado" value="{{ $chamado->id }}">
+                            <button type="submit" class="btn btn-primary">Responder</button>
+                        </form>
+                        <a href=" {{ route('chamado.close', ['id' => $chamado->id]) }} "><button type="button" class="btn btn-outline-primary">Encerrar</button></a>
+                    @endif
+                </td>
+            </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

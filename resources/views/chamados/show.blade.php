@@ -4,6 +4,10 @@
 
 @section('content')
 
+<?php
+    session_start();
+?>
+
 <script>
     function showDiv() {
         document.getElementById('divtramite').style.display = "block";
@@ -14,11 +18,14 @@
     }
 </script>
 
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+
 <h1>Detalhes do chamado</h1>
 </br>
 
 <h4>Chamado</h4>
 <div class="row">
+
     <div class="col">
         <label for="id">Id</label>
         <input readonly type="text" class="form-control" id="id" name="id" value="{{ $chamado->id }}">
@@ -85,6 +92,7 @@
     </br>
     <form action=" {{ route('tramite.store') }} " method="POST">
         @csrf
+        <input hidden type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
         <input hidden type="text" class="form-control" id="tipocadastrotramite" name="tipocadastrotramite" value="pordentrodochamado">
         <input hidden type="text" class="form-control" id="idchamado" name="idchamado" value="{{ $chamado->id }}">
         <label for="descricao">Descrição</label>

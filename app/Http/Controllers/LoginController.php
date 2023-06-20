@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Cliente;
 
 class LoginController extends Controller
 {
@@ -20,17 +21,24 @@ class LoginController extends Controller
         }
 
         $usuarios = Usuario::where('username', $request->username)->get();
+        
 
         foreach ($usuarios as $usuario) {
             if (password_verify($request->password, $usuario->password) == true) {
+                $clientes = Cliente::where('id', $usuario->idcliente)->get();
 
                 session_start();
-                $_SESSION['idusuario'] = $usuario['id'];
-                $_SESSION['username'] = $usuario['username'];
-                $_SESSION['nome'] = $usuario['nome'];
-                $_SESSION['status'] = $usuario['status'];
-                $_SESSION['idcliente'] = $usuario['idcliente'];
-                $_SESSION['tipousuario'] = $usuario['tipoUsuario'];
+
+                foreach ($clientes as $cliente) {
+                    $_SESSION['nomecliente'] = $cliente->nome;
+                }
+
+                $_SESSION['idusuario'] = $usuario->id;
+                $_SESSION['username'] = $usuario->username;
+                $_SESSION['nome'] = $usuario->nome;
+                $_SESSION['status'] = $usuario->status;
+                $_SESSION['idcliente'] = $usuario->idcliente;
+                $_SESSION['tipousuario'] = $usuario->tipoUsuario;
 
                 return redirect()->to(route('chamado.index'));
             }

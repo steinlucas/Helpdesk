@@ -8,6 +8,8 @@
     session_start();
 ?>
 
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+
 <h1>Cadastro de chamado</h1>
 </br>
 

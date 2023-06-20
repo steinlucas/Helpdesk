@@ -3,6 +3,11 @@
 @section('title', 'Helpdesk')
 
 @section('content')
+<?php
+    session_start();
+?>
+
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
 
 <h1>Detalhes do usuário</h1>
 </br>

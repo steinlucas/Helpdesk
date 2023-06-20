@@ -4,6 +4,12 @@
 
 @section('content')
 
+<?php
+    session_start();
+?>
+
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+
 <h1>Clientes</h1>
 </br>
 
@@ -23,17 +29,19 @@
     </thead>
     <tbody>
         @foreach($clientes as $cliente)
-        <tr>
-            <td><a class="nav-link">{{ $cliente->id }}</a></td>
-            <td><a class="nav-link">{{ $cliente->cnpj }}</a></td>
-            <td><a class="nav-link">{{ $cliente->nome }}</a></td>
-            <td><a class="nav-link">{{ $cliente->idusuario }}</a></td>
-            <td><a class="nav-link">{{ $cliente->status }}</a></td>
-            <td>
-                <a href=" {{ route('cliente.show', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
-                <a href=" {{ route('cliente.edit', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
-            </td>
-        </tr>
+            @if ($cliente->id == $_SESSION['idcliente'] || $_SESSION['idcliente'] == 1)
+            <tr>
+                <td><a class="nav-link">{{ $cliente->id }}</a></td>
+                <td><a class="nav-link">{{ $cliente->cnpj }}</a></td>
+                <td><a class="nav-link">{{ $cliente->nome }}</a></td>
+                <td><a class="nav-link">{{ $cliente->idusuario }}</a></td>
+                <td><a class="nav-link">{{ $cliente->status }}</a></td>
+                <td>
+                    <a href=" {{ route('cliente.show', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
+                    <a href=" {{ route('cliente.edit', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
+                </td>
+            </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

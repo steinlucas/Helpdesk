@@ -26,10 +26,10 @@
     <header>
         <div class="fixed-top my-navbar">
             <div class="container">
-                    <a href="{{ route('chamado.index') }}"><button type="button" class="btn btn-light">Chamados</button></a>
-                    <a href="{{ route('usuario.index') }}"><button type="button" class="btn btn-light">Usuários</button></a>
-                    <a href="{{ route('cliente.index') }}"><button type="button" class="btn btn-light">Clientes</button></a>
-                    <a href="{{ route('session.logout') }}"><button type="button" class="btn btn-danger">Sair</button></a>
+                <a href="{{ route('chamado.index') }}"><button type="button" class="btn btn-light">Chamados</button></a>
+                <a href="{{ route('usuario.index') }}"><button type="button" class="btn btn-light">Usuários</button></a>
+                <a href="{{ route('cliente.index') }}"><button type="button" class="btn btn-light">Clientes</button></a>
+                <a href="{{ route('session.logout') }}"><button type="button" class="btn btn-danger">Sair</button></a>
             </div>
         </div>
     </header>

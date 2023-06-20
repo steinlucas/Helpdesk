@@ -9,11 +9,13 @@
     session_start();
 ?>
 
+<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+
 <h1>Cadastro de trâmite</h1>
 
 <form action="{{ route('tramite.store') }}" method="POST">
     @csrf
-    <input type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
+    <input hidden type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
 
     <div class="form-group">
         <label for="idchamado">Responder para o chamado número <?php echo $_POST['idchamado']; ?>.</label>
