@@ -58,7 +58,13 @@ class UsuariosController extends Controller
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
         $usuario->password = $request->password;
-        $usuario->status = true;
+
+        if ($request->status == 0){
+            $usuario->status = false;
+        } else {
+            $usuario->status = true;
+        }
+
         $usuario->tipoUsuario = $tipoUsuario->id;
         $usuario->save();
 
@@ -100,7 +106,7 @@ class UsuariosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $usuario = Usuario::find($id);
         $tiposUsuario = UserType::all();

@@ -47,10 +47,12 @@
                 <td>
                     <a href=" {{ route('usuario.show', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
                     <a href=" {{ route('usuario.edit', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
-                    @if ($usuario->status == 0)
-                        <a href=" {{ route('usuario.enable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Ativar</button></a>
-                    @else
-                        <a href=" {{ route('usuario.disable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Desativar</button></a>
+                    @if ($_SESSION['username'] == "admin")
+                        @if ($usuario->status == 0)
+                            <a href=" {{ route('usuario.enable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Ativar</button></a>
+                        @else
+                            <a href=" {{ route('usuario.disable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Desativar</button></a>
+                        @endif
                     @endif
                 </td>
             </tr>

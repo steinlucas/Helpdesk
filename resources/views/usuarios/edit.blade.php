@@ -17,15 +17,12 @@
     @csrf
     <input hidden type="text" class="form-control" id="id" name="id" value="{{ $usuario->id }}">
 
-    @if ($_SESSION['username'] == "admin")
-        <label @if ($_SESSION['username'] != "admin") hidden @endif >Status</label>
-        <select name="status">
-            <option @if ($_SESSION['username'] != "admin") hidden @endif value="0" @if ($usuario->status == 0) selected="selected" @endif>Desativado</option>
-            <option @if ($_SESSION['username'] != "admin") hidden @endif value="1" @if ($usuario->status == 1) selected="selected" @endif>Ativado</option>
-        </select>
-        </br>
-        </br>
-    @endif
+    <label @if ($_SESSION['username'] != "admin") hidden @endif >Status</label>
+    <select @if ($_SESSION['username'] != "admin") hidden @endif name="status">
+        <option value="0" @if ($usuario->status == 0) selected="selected" @endif>Desativado</option>
+        <option value="1" @if ($usuario->status == 1) selected="selected" @endif>Ativado</option>
+    </select>
+    </br>
 
     <div class="form-group">
         <label for="nome">Nome</label>
