@@ -18,7 +18,8 @@
     }
 </script>
 
-<p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+<p>Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+<p>Usuário: <?php echo $_SESSION['username']; ?> - Nome: <?php echo $_SESSION['nome']; ?></p>
 
 <h1>Detalhes do chamado</h1>
 </br>

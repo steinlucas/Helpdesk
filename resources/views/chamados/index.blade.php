@@ -8,13 +8,8 @@
     session_start();
 ?>
 
-<p>nomecliente: <?php echo $_SESSION['nomecliente']; ?></p>
-<p>username: <?php echo $_SESSION['username']; ?> - nome: <?php echo $_SESSION['nome']; ?></p>
-
-<p>$_SESSION['idusuario'] <?php echo $_SESSION['idusuario'];?></p>
-<p>$_SESSION['username'] <?php echo $_SESSION['username'];?></p>
-<p>$_SESSION['nome'] <?php echo $_SESSION['nome'];?></p>
-<p>$_SESSION['idcliente'] <?php echo $_SESSION['idcliente'];?></p>
+<p>Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
+<p>Usuário: <?php echo $_SESSION['username']; ?> - Nome: <?php echo $_SESSION['nome']; ?></p>
 
 <h1>Chamados</h1>
 </br>
