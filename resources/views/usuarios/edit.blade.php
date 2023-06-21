@@ -23,7 +23,10 @@
         <option value="0" @if ($usuario->status == 0) selected="selected" @endif>Desativado</option>
         <option value="1" @if ($usuario->status == 1) selected="selected" @endif>Ativado</option>
     </select>
+
+    @if ($_SESSION['username'] == "admin")
     </br>
+    @endif
 
     <div class="form-group">
         <label for="nome">Nome</label>
@@ -53,8 +56,6 @@
             value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->description }}</option>
         @endforeach
     </select>
-
-    </br>
     </br>
 
     <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>

@@ -34,7 +34,9 @@
             </br>
             <select required name="atendente">
                 @foreach($atendentes as $atendente)
-                    <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
+                    @if ($atendente->id != 1)
+                        <option value="{{ $atendente->id }}">{{ $atendente->username }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

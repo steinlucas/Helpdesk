@@ -51,6 +51,8 @@
     </form>
     @else
         <p>Apenas o usuário administrador do sistema tem acesso à esta tela.</p>
+
+        </br><a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>
     @endif
-    
+
 @endsection
