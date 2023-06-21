@@ -22,3 +22,58 @@
 .hide-div {
     display: none;
 }
+
+.login {
+    position: center;
+}
+
+.login-container {
+    height: 200px;
+    position: relative;
+}
+
+.center-title {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-subtitle {
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-username {
+    margin: 0;
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-password {
+    margin: 0;
+    position: absolute;
+    top: 190%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-button {
+    margin: 0;
+    position: absolute;
+    top: 240%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 200px;
+}

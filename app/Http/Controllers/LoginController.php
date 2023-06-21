@@ -21,7 +21,6 @@ class LoginController extends Controller
         }
 
         $usuarios = Usuario::where('username', $request->username)->get();
-        
 
         foreach ($usuarios as $usuario) {
             if (password_verify($request->password, $usuario->password) == true) {
@@ -30,6 +29,10 @@ class LoginController extends Controller
                 session_start();
 
                 foreach ($clientes as $cliente) {
+                    if ($usuario->status != true || $cliente->status != true) {
+                        return redirect()->to(route('session.index'));
+                    }
+
                     $_SESSION['nomecliente'] = $cliente->nome;
                 }
 
@@ -42,7 +45,6 @@ class LoginController extends Controller
 
                 return redirect()->to(route('chamado.index'));
             }
-
         }
 
         return redirect()->to(route('session.index'));

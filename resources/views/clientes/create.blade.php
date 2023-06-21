@@ -48,5 +48,8 @@
         <a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>
         <input type="submit" class="btn btn-primary" value="Gravar"></input>
     </form>
+    @else
+        <p>Apenas o usuário administrador do sistema tem acesso à esta tela.</p>
     @endif
+    
 @endsection

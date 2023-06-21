@@ -13,9 +13,12 @@
 <h1>Clientes</h1>
 </br>
 
-<a href=" {{ route('cliente.create') }} " class="btn btn-primary">Cadastrar um cliente</a>
-</br></br>
+<p>Com um usuário cliente ou atendente logado, tentar acessar http://localhost:8000/clientes/create</p>
 
+@if ($_SESSION['username'] == "admin")
+    <a href=" {{ route('cliente.create') }} " class="btn btn-primary">Cadastrar um cliente</a>
+    </br></br>
+@endif
 <table class="table">
     <thead>
         <tr>

@@ -9,7 +9,7 @@ use App\Models\Usuario;
 
 class ChamadosController extends Controller
 {
-    public function index(){
+    public function index() {
         $chamados = Chamado::all();
         
         foreach($chamados as $chamado) {

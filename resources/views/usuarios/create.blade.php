@@ -10,10 +10,9 @@
 
 <p>Usuário logado: <?php echo $_SESSION['username']; ?>. Cliente: <?php echo $_SESSION['nomecliente']; ?></p>
 
+<h1>Cadastro de usuário</h1>
+</br>
 @if ($_SESSION['username'] == "admin")
-    <h1>Cadastro de usuário</h1>
-    </br>
-
     <form action="{{ route('usuario.store') }}" method="POST">
         @csrf
 
@@ -47,7 +46,8 @@
         <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>
         <input type="submit" class="btn btn-primary" value="Gravar">
     </form>
-    
+@else
+    <p>Apenas o usuário administrador do sistema tem acesso à esta tela.</p>
 @endif
 
 @endsection
