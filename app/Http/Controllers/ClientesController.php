@@ -20,12 +20,6 @@ class ClientesController extends Controller
             foreach ($usuarios as $usuario) {
                 if ($usuario->idcliente == $cliente->id) {
                     $cliente->idusuario = $usuario->username;
-
-                    if ($cliente->status == true) {
-                        $cliente->status = "Ativado";
-                    } else {
-                        $cliente->status = "Desativado";
-                    }
                 }
             }
         }
@@ -67,12 +61,6 @@ class ClientesController extends Controller
         foreach ($usuarios as $usuario) {
             if ($usuario->idcliente == $cliente->id) {
                 $cliente->idusuario = $usuario->username;
-    
-                if ($cliente->status == true) {
-                    $cliente->status = "Ativado";
-                } else {
-                    $cliente->status = "Desativado";
-                }
             }
         }
 
@@ -110,6 +98,13 @@ class ClientesController extends Controller
 
         $cliente->cnpj = $request->cnpj;
         $cliente->nome = $request->nome;
+
+        if ($request->status == 1) {
+            $request->status = true;
+        } else {
+            $request->status = false;
+        }
+
         $cliente->status = $request->status;
         $cliente->save();
 

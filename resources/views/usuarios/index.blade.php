@@ -35,14 +35,14 @@
     </thead>
     <tbody>
         @foreach($usuarios as $usuario)
-            @if ($usuario->idcliente == $_SESSION['nomecliente'] || $_SESSION['username'] == "admin")
+        @if ($_SESSION['username'] == "admin" || ($usuario->idcliente == $_SESSION['idcliente']) || ($usuario->username == $_SESSION['username']))
             <tr>
                 <td><a class="nav-link">{{ $usuario->id }}</a></td>
                 <td><a class="nav-link">{{ $usuario->nome }}</a></td>
                 <td><a class="nav-link">{{ $usuario->username }}</a></td>
                 <td><a class="nav-link">{{ $usuario->idcliente }}</a></td>
                 <td><a class="nav-link">{{ $usuario->tipoUsuario }}</a></td>
-                <td><a class="nav-link">{{ $usuario->status }}</a></td>
+                <td><a class="nav-link">@if ($usuario->status == 1) Ativado @else Desativado @endif</a></td>
                 <td><a class="nav-link">{{ $usuario->created_at->format("d/m/Y") }}</a></td>
                 <td>
                     <a href=" {{ route('usuario.show', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>

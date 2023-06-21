@@ -38,7 +38,7 @@
                 <td><a class="nav-link">{{ $cliente->cnpj }}</a></td>
                 <td><a class="nav-link">{{ $cliente->nome }}</a></td>
                 <td><a class="nav-link">{{ $cliente->idusuario }}</a></td>
-                <td><a class="nav-link">{{ $cliente->status }}</a></td>
+                <td><a class="nav-link">@if ($cliente->status == 1) Ativado @else Desativado @endif</a></td>
                 <td>
                     <a href=" {{ route('cliente.show', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
                     <a href=" {{ route('cliente.edit', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>

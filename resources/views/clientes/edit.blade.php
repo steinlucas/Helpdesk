@@ -29,15 +29,12 @@
     </div>
     </br>
 
-    @if ($_SESSION['username'] == "admin")
-        <label>Status</a>
-        <select name="status">
-            <option value="1" @if ($cliente->status == "Ativado") selected="selected" @endif>Ativado</option>
-            <option value="0" @if ($cliente->status == "Desativado") selected="selected" @endif>Desativado</option>
+    @if ($_SESSION['username'] == "admin") <label>Status</label> @endif
+        <select @if ($_SESSION['username'] != "admin") hidden @endif name="status">
+            <option value="1" @if ($cliente->status == 1) selected="selected" @endif>Ativado</option>
+            <option value="0" @if ($cliente->status == 0) selected="selected" @endif>Desativado</option>
         </select>
         </br>
-    @endif
-
     </br>
     <a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>
     <input type="submit" class="btn btn-primary" value="Atualizar cliente">
