@@ -6,15 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Cliente;
 
-class LoginController extends Controller
-{
-    public function index()
-    {
+class LoginController extends Controller {
+    
+    public function index() {
         return view("sessions.index");
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         if (!empty($request) AND (empty($request->username) OR empty($request->password))) {
             return redirect()->to(route('session.index'));
             exit;
@@ -41,7 +39,7 @@ class LoginController extends Controller
                 $_SESSION['nome'] = $usuario->nome;
                 $_SESSION['status'] = $usuario->status;
                 $_SESSION['idcliente'] = $usuario->idcliente;
-                $_SESSION['tipousuario'] = $usuario->tipoUsuario;
+                $_SESSION['idtipousuario'] = $usuario->idtipousuario;
 
                 return redirect()->to(route('chamado.index'));
             }
@@ -50,8 +48,7 @@ class LoginController extends Controller
         return redirect()->to(route('session.index'));
     }
 
-    public function logout()
-    {
+    public function logout() {
         session_start();
         session_unset();
         session_destroy();

@@ -33,7 +33,9 @@
     @if ($_SESSION['username'] == "admin") <label>Status</label> @endif
         <select @if ($_SESSION['username'] != "admin") hidden @endif name="status">
             <option value="1" @if ($cliente->status == 1) selected="selected" @endif>Ativado</option>
-            <option value="0" @if ($cliente->status == 0) selected="selected" @endif>Desativado</option>
+            @if ($cliente->id != 1)
+                <option value="0" @if ($cliente->status == 0) selected="selected" @endif>Desativado</option>
+            @endif
         </select>
         </br>
     </br>

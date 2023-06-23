@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('chamados', function (Blueprint $table) {
-            $table->unsignedBigInteger('cliente')->default(1);
-            $table->foreign('cliente')->references('id')->on('clientes');
+        Schema::table('usuarios', function (Blueprint $table) {
+            $table->unsignedBigInteger('idcliente')->default('1');
+            $table->foreign('idcliente')->references('id')->on('clientes');
+            $table->boolean('status')->default(null)->change();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('chamados', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };

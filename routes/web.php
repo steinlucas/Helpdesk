@@ -27,6 +27,8 @@ Route::post('/clientes/store', [ClientesController::class, 'store'])->name('clie
 Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('cliente.show');
 Route::get('/clientes/edit/{id}', [ClientesController::class, 'edit'])->name('cliente.edit');
 Route::post('/clientes/update', [ClientesController::class, 'update'])->name('cliente.update');
+Route::get('/clientes/enable/{id}', [ClientesController::class, 'enable'])->name('cliente.enable');
+Route::get('/clientes/disable/{id}', [ClientesController::class, 'disable'])->name('cliente.disable');
 
 Route::get('/', [ChamadosController::class, 'index'])->name('index');
 Route::get('/chamados', [ChamadosController::class, 'index'])->name('chamado.index');

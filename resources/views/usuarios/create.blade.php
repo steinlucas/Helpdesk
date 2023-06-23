@@ -38,11 +38,21 @@
         <label>Tipo usuário</a>
         <select name="tipoUsuario">
             @foreach($tiposUsuarios as $tipoUsuario)
-                <option value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->description }}</option>
+                @if ($tipoUsuario->id == 2)
+                <option value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->descricao }}</option>
+                @endif
             @endforeach
         </select>
         </br>
+        </br>
         
+        <label>Status</label>
+        <select name="status">
+            <option value="1" selected>Ativado</option>    
+            <option value="0">Desativado</option>
+        </select>
+        </br>
+
         </br>
         <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>
         <input type="submit" class="btn btn-primary" value="Gravar">

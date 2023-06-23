@@ -44,9 +44,9 @@ class Usuario extends Model
         'password' => 'hashed',
     ];
 
-    public function userType()
+    public function tiposusuario()
     {
-        $this->belongsTo(UserType::class, 'id');
+        $this->belongsTo(TiposUsuario::class, 'id');
     }
 
     public function cliente()

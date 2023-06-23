@@ -18,13 +18,14 @@
     @csrf
     <input hidden type="text" class="form-control" id="id" name="id" value="{{ $usuario->id }}">
 
-    <label @if ($_SESSION['username'] != "admin") hidden @endif >Status</label>
-    <select @if ($_SESSION['username'] != "admin") hidden @endif name="status">
+    <label @if ($_SESSION['username'] != "admin" or $usuario->id == 1) hidden @endif >Status</label>
+    <select @if ($_SESSION['username'] != "admin" or $usuario->id == 1) hidden @endif name="status">
         <option value="0" @if ($usuario->status == 0) selected="selected" @endif>Desativado</option>
         <option value="1" @if ($usuario->status == 1) selected="selected" @endif>Ativado</option>
     </select>
 
-    @if ($_SESSION['username'] == "admin")
+    @if ($_SESSION['username'] == "admin" and $usuario->id != 1)
+    </br>
     </br>
     @endif
 
@@ -44,18 +45,6 @@
         <label for="password">Senha</label>
         <input required type="password" class="form-control" id="password" name="password" value="{{ $usuario->password }}">
     </div>
-    </br>
-
-    <label @if ($_SESSION['username'] <> "admin") hidden @endif>Tipo usuário</label>
-    <select @if ($_SESSION['username'] <> "admin") hidden @endif name="tipoUsuario">
-        @foreach($tiposUsuario as $tipoUsuario)
-            <option 
-            @if ($usuario->tipoUsuario == $tipoUsuario->id)
-                selected="selected"
-            @endif
-            value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->description }}</option>
-        @endforeach
-    </select>
     </br>
 
     <a href=" {{ route('usuario.index') }} " class="btn btn-outline-primary">Voltar</a>

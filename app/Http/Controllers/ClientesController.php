@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Usuario;
 
-class ClientesController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+class ClientesController extends Controller {
+    
+    public function index() {
         $clientes = Cliente::all();
         $usuarios = Usuario::all();
 
@@ -27,17 +23,19 @@ class ClientesController extends Controller
         return view('clientes.index', ['clientes' => $clientes]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request) {
         $cliente = new Cliente;
         $cliente->cnpj = $request->cnpj;
         $cliente->nome = $request->nome;
-        $cliente->status = true;
+        $cliente->status = $request->status;
 
         $usuario = new Usuario;
         $usuario->nome = $request->nome;
         $usuario->username = $request->username;
         $usuario->password = $request->password;
-        
+        $usuario->status = $request->status;
+        $usuario->idtipousuario = $request->tipoUsuario;
+
         $cliente->save();
         $usuario->save();
 
@@ -50,11 +48,7 @@ class ClientesController extends Controller
         return redirect()->to(route('cliente.index'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
+    public function edit($id) {
         $cliente = Cliente::find($id);
         $usuarios = Usuario::where('idcliente', $cliente->id)->get();
 
@@ -95,7 +89,6 @@ class ClientesController extends Controller
 
     public function update(Request $request) {
         $cliente = Cliente::find($request->id);
-
         $cliente->cnpj = $request->cnpj;
         $cliente->nome = $request->nome;
 
@@ -106,6 +99,22 @@ class ClientesController extends Controller
         }
 
         $cliente->status = $request->status;
+        $cliente->save();
+
+        return redirect()->to(route('cliente.index'));
+    }
+
+    public function enable($id) {
+        $cliente = Cliente::find($id);
+        $cliente->status = 1;
+        $cliente->save();
+        
+        return redirect()->to(route('cliente.index'));
+    }
+
+    public function disable($id) {
+        $cliente = Cliente::find($id);
+        $cliente->status = 0;
         $cliente->save();
 
         return redirect()->to(route('cliente.index'));

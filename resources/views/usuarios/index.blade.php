@@ -42,13 +42,13 @@
                 <td><a class="nav-link">{{ $usuario->nome }}</a></td>
                 <td><a class="nav-link">{{ $usuario->username }}</a></td>
                 <td><a class="nav-link">{{ $usuario->idcliente }}</a></td>
-                <td><a class="nav-link">{{ $usuario->tipoUsuario }}</a></td>
+                <td><a class="nav-link">{{ $usuario->idtipousuario }}</a></td>
                 <td><a class="nav-link">@if ($usuario->status == 1) Ativado @else Desativado @endif</a></td>
                 <td><a class="nav-link">{{ $usuario->created_at->format("d/m/Y") }}</a></td>
                 <td>
                     <a href=" {{ route('usuario.show', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
                     <a href=" {{ route('usuario.edit', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
-                    @if ($_SESSION['username'] == "admin")
+                    @if ($_SESSION['username'] == "admin" and $usuario->idtipousuario != "Administrador")
                         @if ($usuario->status == 0)
                             <a href=" {{ route('usuario.enable', ['id' => $usuario->id]) }} "><button type="button" class="btn btn-outline-primary">Ativar</button></a>
                         @else

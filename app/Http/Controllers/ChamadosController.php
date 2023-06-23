@@ -7,8 +7,8 @@ use App\Models\Chamado;
 use App\Models\Cliente;
 use App\Models\Usuario;
 
-class ChamadosController extends Controller
-{
+class ChamadosController extends Controller {
+    
     public function index() {
         $chamados = Chamado::all();
         
@@ -20,7 +20,7 @@ class ChamadosController extends Controller
                 if ($chamado->usuarioAbriu == $usuario->id) {
                     $chamado->usuarioAbriu = $usuario->nome;
 
-                    foreach($usuariosAtendentes as $usuarioAtendente){
+                    foreach($usuariosAtendentes as $usuarioAtendente) {
                         if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
                             $chamado->atendenteResponsavel = $usuarioAtendente->nome;
                         }
@@ -46,7 +46,6 @@ class ChamadosController extends Controller
         $chamado->atendenteResponsavel = $request->atendente;
         $chamado->titulo = $request->titulo;
         $chamado->descricao = $request->descricao;
-        
         $chamado->save();
 
         return redirect()->to(route('chamado.index'));
@@ -79,7 +78,7 @@ class ChamadosController extends Controller
             if ($chamado->usuarioAbriu == $usuario->id) {
                 $chamado->usuarioAbriu = $usuario->nome;
 
-                foreach($usuariosAtendentes as $usuarioAtendente){
+                foreach($usuariosAtendentes as $usuarioAtendente) {
                     if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
                         $chamado->atendenteResponsavel = $usuarioAtendente->nome;
                     }
@@ -100,7 +99,7 @@ class ChamadosController extends Controller
         foreach ($tramites as $tramite) {
             $usuariosTramitaram = Usuario::find($tramite->idusuario)->first()->get();
 
-            foreach ($usuariosTramitaram as $usuarioTramite){
+            foreach ($usuariosTramitaram as $usuarioTramite) {
                 if ($usuarioTramite->id == $tramite->idusuario) {
                     $tramite->idusuario = $usuarioTramite->username;
                 }
@@ -115,11 +114,11 @@ class ChamadosController extends Controller
     }
 
     public function create(Request $request) {
-        $atendentes = Usuario::where('tipoUsuario', 2)->get();
+        $atendentes = Usuario::where('idtipousuario', 2)->get();
         $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->get();
         $idusuario = $request->idusuario;
 
-        if ($request->tipousuario == 1 || $request->tipousuario == 2) {
+        if ($request->idtipousuario == 1 || $request->idtipousuario == 2) {
             $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->get();
         } else {
             $clientes = Cliente::where('status', 1)->where('id', '!=', 1)->where('id', $request->idcliente)->get();

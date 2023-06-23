@@ -41,9 +41,18 @@
         </div>
         </br>
 
-        <select hidden name="tipoUsuario">
-                <option value="2">Cliente</option>
+        <label>Tipo usuário</label>
+        <select name="tipoUsuario">
+                <option value="3">Cliente</option>
         </select>
+        </br></br>
+
+        <label>Status</label>
+        <select name="status">
+            <option value="1" selected>Ativado</option>    
+            <option value="0">Desativado</option>
+        </select>
+        </br></br>
 
         </br>
         <a href=" {{ route('cliente.index') }} " class="btn btn-outline-primary">Voltar</a>

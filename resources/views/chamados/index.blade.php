@@ -17,7 +17,7 @@
         @csrf
         <input hidden type="text" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
         <input hidden type="text" name="idcliente" value="<?php echo $_SESSION['idcliente']; ?>">
-        <input hidden type="text" name="tipousuario" value="<?php echo $_SESSION['tipousuario']; ?>">
+        <input hidden type="text" name="idtipousuario" value="<?php echo $_SESSION['idtipousuario']; ?>">
         <button type="submit" class="btn btn-primary">Cadastrar um chamado</button>
     </form>
 </br></br>

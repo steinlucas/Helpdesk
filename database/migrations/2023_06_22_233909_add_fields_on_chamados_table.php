@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::table('chamados', function (Blueprint $table) {
             $table->unsignedBigInteger('usuarioAbriu')->default(1);
             $table->foreign('usuarioAbriu')->references('id')->on('usuarios');
-            $table->unsignedBigInteger('atendenteResponsavel')->default(1);
-            $table->foreign('atendenteResponsavel')->references('id')->on('usuarios');
+            $table->unsignedBigInteger('idatendente')->default(1);
+            $table->foreign('idatendente')->references('id')->on('usuarios');
+            $table->unsignedBigInteger('idcliente')->default(1);
+            $table->foreign('idcliente')->references('id')->on('clientes');
+
+            $table->boolean('status')->default(null)->change();
         });
     }
 

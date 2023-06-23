@@ -43,6 +43,13 @@
                 <td>
                     <a href=" {{ route('cliente.show', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-primary">Ver</button></a>
                     <a href=" {{ route('cliente.edit', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-outline-primary">Editar</button></a>
+                    @if ($_SESSION['username'] == "admin" and $cliente->id != 1)
+                        @if ($cliente->status == 0)
+                            <a href=" {{ route('cliente.enable', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-outline-primary">Ativar</button></a>
+                        @else
+                            <a href=" {{ route('cliente.disable', ['id' => $cliente->id]) }} "><button type="button" class="btn btn-outline-primary">Desativar</button></a>
+                        @endif
+                    @endif
                 </td>
             </tr>
             @endif

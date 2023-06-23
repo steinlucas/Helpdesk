@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserType extends Model
+class TiposUsuario extends Model
 {
     use HasFactory;
 
-    public function usuarios()
-    {
-        return $this->hasMany(Usuario::class, 'tipoUsuario');
-    }
+    protected $table = 'tiposusuario';
 
     protected $fillable = [
         'id',
-        'description'
+        'descricao'
     ];
+
+    public function usuarios() {
+        return $this->hasMany(Usuario::class, 'tipoUsuario');
+    }
 }
