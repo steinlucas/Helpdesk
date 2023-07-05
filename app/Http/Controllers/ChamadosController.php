@@ -14,15 +14,15 @@ class ChamadosController extends Controller {
         
         foreach($chamados as $chamado) {
             $usuariosAbriram = Usuario::find($chamado->usuarioAbriu)->first()->get();
-            $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->first()->get();
+            $usuariosAtendentes = Usuario::find($chamado->idatendente)->first()->get();
 
             foreach($usuariosAbriram as $usuario) {
                 if ($chamado->usuarioAbriu == $usuario->id) {
                     $chamado->usuarioAbriu = $usuario->nome;
 
                     foreach($usuariosAtendentes as $usuarioAtendente) {
-                        if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
-                            $chamado->atendenteResponsavel = $usuarioAtendente->nome;
+                        if ($chamado->idatendente == $usuarioAtendente->id) {
+                            $chamado->idatendente = $usuarioAtendente->username;
                         }
                     }
 
@@ -42,10 +42,11 @@ class ChamadosController extends Controller {
         $chamado = new Chamado;
 
         $chamado->usuarioAbriu = $request->idusuario;
-        $chamado->cliente = $request->cliente;
-        $chamado->atendenteResponsavel = $request->atendente;
+        $chamado->idcliente = $request->cliente;
+        $chamado->idatendente = $request->atendente;
         $chamado->titulo = $request->titulo;
         $chamado->descricao = $request->descricao;
+        $chamado->status = 1;
         $chamado->save();
 
         return redirect()->to(route('chamado.index'));
@@ -69,18 +70,18 @@ class ChamadosController extends Controller {
 
     public function show($id) {
         $chamado = Chamado::find($id);
-        $cliente = Cliente::find($chamado->cliente);
+        $cliente = Cliente::find($chamado->idcliente);
 
         $usuariosAbriram = Usuario::find($chamado->usuarioAbriu)->first()->get();
-        $usuariosAtendentes = Usuario::find($chamado->atendenteResponsavel)->first()->get();
+        $usuariosAtendentes = Usuario::find($chamado->idatendente)->first()->get();
 
         foreach($usuariosAbriram as $usuario) {
             if ($chamado->usuarioAbriu == $usuario->id) {
                 $chamado->usuarioAbriu = $usuario->nome;
 
                 foreach($usuariosAtendentes as $usuarioAtendente) {
-                    if ($chamado->atendenteResponsavel == $usuarioAtendente->id) {
-                        $chamado->atendenteResponsavel = $usuarioAtendente->nome;
+                    if ($chamado->idatendente == $usuarioAtendente->id) {
+                        $chamado->idatendente = $usuarioAtendente->nome;
                     }
                 }
 
@@ -92,7 +93,7 @@ class ChamadosController extends Controller {
             }
         }
 
-        $chamado->cliente = $cliente->nome;
+        $chamado->idcliente = $cliente->nome;
 
         $tramites = app('App\Http\Controllers\TramitesController')->show($chamado->id);
         
